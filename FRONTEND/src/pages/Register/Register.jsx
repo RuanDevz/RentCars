@@ -17,9 +17,8 @@ const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmpassword, setConfirmpassword] = useState('');
-  const [msg, setMsg] = useState('');
 
-  const {showMessage, setShowMessage,error, setError} = useContext(Context);
+  const {showMessage, setShowMessage,error, setError,msg, setMsg} = useContext(Context);
 
   useEffect(() => {
     if (showMessage) {

@@ -4,7 +4,7 @@ import Context from '../../useContext/Context'
 const Popup = () => {
 
 
-    const {showMessage, setShowMessage,setError,error} = useContext(Context)
+    const {showMessage, setShowMessage,setError,error, msg, setMsg} = useContext(Context)
 
     useEffect(() => {
         if (showMessage) {

@@ -9,6 +9,7 @@ import Context from './useContext/Context'
 const App = () => {
   const [showMessage, setShowMessage] = useState(false);
   const [error, setError] = useState('');
+  const [msg, setMsg] = useState('');
 
   useEffect(() => {
     const isMobile = window.innerWidth <= 768;
@@ -23,7 +24,8 @@ const App = () => {
   return (
     <Context.Provider value={{
       showMessage, setShowMessage,
-      error, setError
+      error, setError,
+      msg, setMsg
     }}>
     <Router>
     <div className='overflow-x-hidden'>

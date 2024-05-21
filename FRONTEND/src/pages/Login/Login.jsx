@@ -7,14 +7,14 @@ import axios from 'axios'
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
 import Context from '../../useContext/Context'
+import Popup from '../../components/Popup/Popup'
 
 const Login = () => {
 
-  const {showMessage, setShowMessage} = useContext(Context)
+  const {showMessage, setShowMessage,error, setError, msg, setMsg} = useContext(Context)
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(false);
 
   const [accessToken, setAccessToken] = useState('')
   const [userdata, setUserdata] = useState([])
@@ -41,18 +41,25 @@ const Login = () => {
       console.log(response.data)
       setAccessToken(response.data.accessToken)
       setUserdata(response.data.user.username)
+      setMsg('Login efetuado com sucesso!')
+      setShowMessage(true)
     }).catch(() =>{
       setError("usuario ou senha incorretos")
     })
   }
 
-  sessionStorage.setItem("accessToken", accessToken)
-  sessionStorage.setItem("user", userdata)
+  useEffect(() => {
+    sessionStorage.setItem("accessToken", accessToken)
+    sessionStorage.setItem("user", userdata)
+  }, [accessToken, userdata])
 
   
   return (
 <div>
   <Header/>
+  {showMessage &&(
+          <Popup />
+        )}
         <header className='flex justify-center items-center pt-28 pb-12'>
           <img className='w-48' src={logo} alt="logo" />
         </header>
@@ -64,11 +71,6 @@ const Login = () => {
           <Input onChange={(e) => setPassword(e.target.value)} htmlFor='password' placeholder='Password' type='password' name='password' id='password'/>
           </div>
           <Button onClick={handlelogin} Children='Login'/>
-          {error && (
-          <p className='text-base text-red-600 text-center font-primary font-medium'>
-            {error}
-          </p>
-        )}
           <Link  to='/Register'>
           <a className='text-primary underline' href="">Don´t have a account ?</a>
           </Link>
