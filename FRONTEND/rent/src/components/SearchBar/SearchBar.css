@@ -1,0 +1,19 @@
+.search-bar-container {
+  /* Adiciona um espaço extra para a sombra não ficar cortada */
+  padding: 10px;
+}
+
+.search-bar-container .max-w-6xl {
+  /* Adiciona a sombra ao redor do container */
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+.top {
+  margin-top: 570px; /* Valor padrão para desktop */
+}
+
+@media screen and (max-width: 767px) {
+  .top {
+    margin-top: 170px; /* Valor para dispositivos móveis */
+  }
+}
