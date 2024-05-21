@@ -3,17 +3,25 @@ import logo from '../../assets/Images/Logo.png';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
 import { Link } from 'react-router-dom';
+import axios from 'axios'
 
 const Register = () => {
-  const [user, setUser] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmpassword, setConfirmpassword] = useState('');
   const [error, setError] = useState(false);
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
 
-    if (user.length < 3) {
+    await axios.post('http://localhost:3000/user',{
+      username: username,
+      password: password
+    }).then((response) =>{
+      console.log(response.data)
+    })
+
+    if (username.length < 3) {
       setError('Your name needs at least 3 characters');
     } else if (password !== confirmpassword) {
       setError('Passwords do not match');
@@ -36,7 +44,7 @@ const Register = () => {
       >
         <div>
           <Input
-            onChange={(e) => setUser(e.target.value)}
+            onChange={(e) => setUsername(e.target.value)}
             htmlFor='user'
             placeholder='User'
             type='text'
