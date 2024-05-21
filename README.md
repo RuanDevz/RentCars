@@ -4,7 +4,7 @@
 
 Esta é a landing page do RentCars, um site fictício de aluguel de carros. Esta landing page foi desenvolvida como parte de um projeto para aprender e praticar tecnologias como React.js, Tailwind CSS, AOS e Swiper.
 
-![Rentcars](https://github.com/RuanDevz/RentCars/assets/121466178/ecec4dab-9131-4783-9eeb-bc7f9a359aae)
+![Rentcars](https://github.com/RuanDevz/RentCars/assets/121466178/fc79a093-2c5c-4685-ae9a-2c9a836403f3)
 
 
 ## Tecnologias Utilizadas
