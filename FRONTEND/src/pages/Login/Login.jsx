@@ -5,6 +5,8 @@ import Button from '../../components/Button/Button'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 import { useState } from 'react'
+import Header from '../../components/Header/Header'
+import Footer from '../../components/Footer/Footer'
 
 const Login = () => {
 
@@ -26,6 +28,7 @@ const Login = () => {
   }
   return (
 <div>
+  <Header/>
         <header className='flex justify-center items-center pt-28 pb-12'>
           <img className='w-48' src={logo} alt="logo" />
         </header>
@@ -46,6 +49,9 @@ const Login = () => {
           <a className='text-primary underline' href="">Don´t have a account ?</a>
           </Link>
         </form>
+        <div className='mt-32'>
+        <Footer/>
+        </div>
     </div>
   )
 }
