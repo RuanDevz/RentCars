@@ -19,17 +19,21 @@ const Register = () => {
       password: password
     }).then((response) =>{
       console.log(response.data)
-    })
 
-    if (username.length < 3) {
-      setError('Your name needs at least 3 characters');
-    } else if (password !== confirmpassword) {
-      setError('Passwords do not match');
-    } else if (password.length <= 8) {
-      setError('Your password must be longer than 8 characters');
-    }else{
-      setError('')
-    }
+      if (username.length < 3) {
+        setError('Your name needs at least 3 characters');
+      } else if (password !== confirmpassword) {
+        setError('Passwords do not match');
+      } else if (password.length <= 8) {
+        setError('Your password must be longer than 8 characters');
+      }else{
+        setError('')
+      }
+      
+      if(response.data.error){
+        setError(response.data.error)
+      }
+    })
   };
 
   return (
