@@ -3,13 +3,15 @@ import logo from '../../assets/Images/Logo.png';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
 import { Link } from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios';
 
 const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmpassword, setConfirmpassword] = useState('');
   const [error, setError] = useState(false);
+  const [msg, setMsg] = useState('');
+  const [showMessage, setShowMessage] = useState(false); // Estado para controlar a visibilidade da mensagem
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -26,12 +28,16 @@ const Register = () => {
         setError('Passwords do not match');
       } else if (password.length <= 8) {
         setError('Your password must be longer than 8 characters');
-      }else{
-        setError('')
+      } else {
+        setError('');
+        setShowMessage(true); 
       }
-      
+
       if(response.data.error){
-        setError(response.data.error)
+        setError(response.data.error);
+      } else {
+        setMsg(response.data.msg);
+        setShowMessage(true); 
       }
     })
   };
@@ -46,6 +52,12 @@ const Register = () => {
         className='flex justify-center items-center flex-col mt-12 gap-16 font-primary text-base'
         onSubmit={handleRegister}
       >
+        {showMessage && ( 
+          <div data-aos="fade-left" className={`absolute right-0 top-0 mt-10 mr-10 bg-white p-5 shadow-2xl border-b-4 ${error ? 'border-red-500' : 'border-green-500'}`}>
+            <span>{error || msg}</span>
+          </div>
+        )}
+
         <div>
           <Input
             onChange={(e) => setUsername(e.target.value)}
