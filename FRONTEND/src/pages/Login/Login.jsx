@@ -31,22 +31,33 @@ const Login = () => {
     }
   }, [showMessage]);
 
-  const handlelogin = async (e) =>{
-    e.preventDefault()
+  const handlelogin = async (e) => {
+    e.preventDefault();
 
-    await axios.post('http://localhost:3000/user/auth',{
-      username: username,
-      password: password
-    }).then((response) =>{
-      console.log(response.data)
-      setAccessToken(response.data.accessToken)
-      setUserdata(response.data.user.username)
-      setMsg('Login efetuado com sucesso!')
+    if (username.length <= 0) {
+       setError('Digite seu usuario');
+       return setShowMessage(true); 
+    }else if(password.length <= 0 ){
+       setError('Digite sua senha')
+       return setShowMessage(true); 
+    }
+  
+    try {
+      const response = await axios.post('http://localhost:3000/user/auth', {
+        username: username,
+        password: password
+      });
+  
+      console.log(response.data);
+      setAccessToken(response.data.accessToken);
+      setUserdata(response.data.user.username);
+      setMsg('Login efetuado com sucesso!');
+      setShowMessage(true); 
+    } catch (error) {
+      setError("Credenciais Invalidas!");
       setShowMessage(true)
-    }).catch(() =>{
-      setError("usuario ou senha incorretos")
-    })
-  }
+    }
+  };
 
   useEffect(() => {
     sessionStorage.setItem("accessToken", accessToken)
