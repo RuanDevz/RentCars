@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import logo from '../../assets/Images/Logo.png';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
@@ -7,6 +7,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
+import Context from '../../useContext/Context';
+import Popup from '../../components/Popup/Popup';
 
 const Register = () => {
 
@@ -15,9 +17,9 @@ const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmpassword, setConfirmpassword] = useState('');
-  const [error, setError] = useState('');
   const [msg, setMsg] = useState('');
-  const [showMessage, setShowMessage] = useState(false);
+
+  const {showMessage, setShowMessage,error, setError} = useContext(Context);
 
   useEffect(() => {
     if (showMessage) {
@@ -76,15 +78,9 @@ const Register = () => {
         className='flex justify-center items-center flex-col mt-12 gap-16 font-primary text-base'
         onSubmit={handleRegister}
       >
-        {showMessage && (
-          <div
-            data-aos="fade-left"
-            className={` text-sm absolute right-0 top-0 mb-32 z-10 lg:absolute lg:right-0 lg:top-0 mt-10 mr-10 bg-white p-5 shadow-2xl border-b-4 ${error ? 'border-red-500' : 'border-green-500'}`}
-          >
-            <span>{error || msg}</span>
-          </div>
+        {showMessage &&(
+          <Popup />
         )}
-
         <div>
           <Input
             onChange={(e) => setUsername(e.target.value)}

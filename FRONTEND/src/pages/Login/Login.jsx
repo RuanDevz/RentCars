@@ -1,18 +1,35 @@
-import React from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import logo from '../../assets/Images/Logo.png'
 import Input from '../../components/Input/Input'
 import Button from '../../components/Button/Button'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
-import { useState } from 'react'
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
+import Context from '../../useContext/Context'
 
 const Login = () => {
+
+  const {showMessage, setShowMessage} = useContext(Context)
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
+
+  const [accessToken, setAccessToken] = useState('')
+  const [userdata, setUserdata] = useState([])
+
+  useEffect(() => {
+    if (showMessage) {
+      const timeoutId = setTimeout(() => {
+        setShowMessage(false);
+        setError('');
+        setMsg('');
+      }, 3000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [showMessage]);
 
   const handlelogin = async (e) =>{
     e.preventDefault()
@@ -22,10 +39,17 @@ const Login = () => {
       password: password
     }).then((response) =>{
       console.log(response.data)
+      setAccessToken(response.data.accessToken)
+      setUserdata(response.data.user.username)
     }).catch(() =>{
       setError("usuario ou senha incorretos")
     })
   }
+
+  sessionStorage.setItem("accessToken", accessToken)
+  sessionStorage.setItem("user", userdata)
+
+  
   return (
 <div>
   <Header/>
