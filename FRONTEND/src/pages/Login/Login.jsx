@@ -8,6 +8,8 @@ import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
 import Context from '../../useContext/Context'
 import Popup from '../../components/Popup/Popup'
+import Car from '../../assets/Images/Carcomplete.png'
+import '../Register/Carwidth.css'
 
 const Login = () => {
 
@@ -71,10 +73,14 @@ const Login = () => {
   {showMessage &&(
           <Popup />
         )}
-        <header className='flex justify-center items-center pt-28 pb-12'>
+        <form autoComplete='off' className='flex flex-row-reverse justify-around items-center lg:ml-96 gap-52' onSubmit={handlelogin}>
+          <div className='hidden lg:block'>
+            <img className='carwidth' src={Car} alt="car" />
+          </div>
+          <div className='flex justify-center items-center flex-col mt-12 gap-16 font-primary text-base'>
+          <header className='flex justify-center items-center pt-7 pb-12'>
           <img className='w-48' src={logo} alt="logo" />
         </header>
-        <form autoComplete='off' className='flex justify-center items-center flex-col mt-12 gap-16 font-primary text-base' onSubmit={handlelogin}>
           <div>
             <Input onChange={(e) => setUsername(e.target.value)} htmlFor='user' placeholder='User' type='text' name='user' id='user'/>
           </div>
@@ -85,6 +91,7 @@ const Login = () => {
           <Link  to='/Register'>
           <a className='text-primary underline' href="">Don´t have a account ?</a>
           </Link>
+          </div>
         </form>
         <div className='mt-32'>
         <Footer/>
