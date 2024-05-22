@@ -3,6 +3,7 @@ import AOS from 'aos'
 import Dashboard from './components/Dahboard/Dashboard'
 import Register from './pages/Register/Register'
 import Login from './pages/Login/Login'
+import DashboardLooged from './components/DashboardLogged/DashboardLooged'
 import { BrowserRouter as Router, Routes,Route } from 'react-router-dom'
 import Context from './useContext/Context'
 
@@ -10,6 +11,9 @@ const App = () => {
   const [showMessage, setShowMessage] = useState(false);
   const [error, setError] = useState('');
   const [msg, setMsg] = useState('');
+  const [menuActive, setMenuActive] = useState(true);
+  const [accessToken, setAccessToken] = useState('')
+  const [userdata, setUserdata] = useState([])
 
   useEffect(() => {
     const isMobile = window.innerWidth <= 768;
@@ -25,7 +29,10 @@ const App = () => {
     <Context.Provider value={{
       showMessage, setShowMessage,
       error, setError,
-      msg, setMsg
+      msg, setMsg,
+      menuActive, setMenuActive,
+      accessToken, setAccessToken,
+      userdata, setUserdata
     }}>
     <Router>
     <div className='overflow-x-hidden'>
@@ -33,6 +40,7 @@ const App = () => {
       <Route path='/' element={<Dashboard/>}/>
       <Route path='/Register' element={<Register/>} />
       <Route path='Login' element={<Login/>} />
+      <Route path='/DashboardLooged' element={<DashboardLooged />} />
       </Routes>
     </div>
     </Router>

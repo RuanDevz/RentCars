@@ -37,11 +37,11 @@ const Register = () => {
     e.preventDefault();
   
     if (username.length < 3) {
-      setError('Your name needs at least 3 characters');
+      setError('Seu nome precisa ter pelomenos 3 caracteres');
     } else if (password !== confirmpassword) {
-      setError('Passwords do not match');
+      setError('As senhas não combinam');
     } else if (password.length <= 8) {
-      setError('Your password must be longer than 8 characters');
+      setError('Sua senha precisa ter mais que 3 caracteres');
     } else {
       try {
         const response = await axios.post('http://localhost:3000/user', {

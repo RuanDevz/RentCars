@@ -49,7 +49,7 @@ const Header = () => {
           </nav>
         )}
         <div className='flex items-center justify-between'>
-          <img className='py-2 px-10' src={logo} alt="logo" />
+          <Link to='/'><img className='py-2 px-10' src={logo} alt="logo" /></Link>
           {menuActive ? (
             <IoClose className='text-3xl z-50 cursor-pointer text-primary mr-10 lg:hidden' onClick={toggleMenu} />
           ) : (

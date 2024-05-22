@@ -10,16 +10,16 @@ import Context from '../../useContext/Context'
 import Popup from '../../components/Popup/Popup'
 import Car from '../../assets/Images/Carcomplete.png'
 import '../Register/Carwidth.css'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
 
-  const {showMessage, setShowMessage,error, setError, msg, setMsg} = useContext(Context)
+  const navigate = useNavigate()
+
+  const {showMessage, setShowMessage,error, setError, msg, setMsg,accessToken, setAccessToken,userdata, setUserdata} = useContext(Context)
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
-  const [accessToken, setAccessToken] = useState('')
-  const [userdata, setUserdata] = useState([])
 
   useEffect(() => {
     if (showMessage) {
@@ -55,6 +55,7 @@ const Login = () => {
       setUserdata(response.data.user.username);
       setMsg('Login efetuado com sucesso!');
       setShowMessage(true); 
+      navigate('/DashboardLooged')
     } catch (error) {
       setError("Credenciais Invalidas!");
       setShowMessage(true)

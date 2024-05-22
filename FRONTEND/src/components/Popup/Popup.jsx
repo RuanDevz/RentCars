@@ -22,7 +22,7 @@ const Popup = () => {
             {showMessage && (
           <div
             data-aos="fade-left"
-            className={` text-sm absolute right-0 top-0 mb-32 z-10 lg:absolute lg:right-0 lg:top-0 mt-10 mr-10 bg-white p-5 shadow-2xl border-b-4 ${error ? 'border-red-500' : 'border-green-500'}`}
+            className={` text-sm absolute right-0 top-0 mb-32 z-50 lg:absolute lg:right-0 lg:top-0 mt-10 mr-10 bg-white p-5 shadow-2xl border-b-4 ${error ? 'border-red-500' : 'border-green-500'}`}
           >
             <span>{error || msg}</span>
           </div>
