@@ -12,10 +12,18 @@ import Button from '../Button/Button';
 import Arrow from './Images/Arrow.png'
 import axios from 'axios'
 import Context from '../../useContext/Context';
+import Popup from '../Popup/Popup';
 
 const Cars = () => {
 
-    /* USAR PARA PRODUÇÃO
+    const {accessToken, userdata, setError, error, setShowMessage,showMessage} = useContext(Context)
+
+    const [userlogged, setUserlogged] = useState(false)
+
+
+
+
+    /* USAR PARA PRODUÇÃO IGNORAR ISSO
     const {cars, setCars} = useContext(Context)
 
 useEffect(() =>{
@@ -79,10 +87,21 @@ useEffect(() =>{
             price: "3,200"
         }
     ];
+
+    const RentCar = async () =>{
+        if(accessToken && userdata){
+            console.log("Pode alugar carro")
+        }else{
+            setError("Você precisa estar logado para alugar")
+            setShowMessage(true)
+            
+        }
+    }
     
     return (
         <div>
             <main data-aos="zoom-in" className='mt-60'>
+                {showMessage && <Popup />}
                 <section className='flex flex-col mx-auto items-center py-5'>
                     <p className='text-primary font-medium py-3 px-10 bg-blue-100 rounded mb-10 w-64 text-center whitespace-nowrap'>POPULAR RENTAL DEALS</p>
                     <h1 className=' text-center lg:font-primary font-medium text-4xl max-w-xl pb-20'>Most popular cars rental deals</h1>
@@ -120,7 +139,7 @@ useEffect(() =>{
                                 <p><strong>${car.price}</strong> <span className='text-gray-500'>/day</span></p>
                             </div>
                             <div className='flex justify-center items-center mt-6'>
-                                <Button Children='Rent Now'/>
+                                <Button onClick={RentCar} Children='Rent Now'/>
                             </div>
                         </div>
                     ))}
