@@ -15,6 +15,7 @@ import Context from '../../useContext/Context';
 
 const Cars = () => {
 
+    /* USAR PARA PRODUÇÃO
     const {cars, setCars} = useContext(Context)
 
 useEffect(() =>{
@@ -29,6 +30,56 @@ useEffect(() =>{
 
     fetchData();
 }, []);
+*/
+
+
+    const cars = [
+        {
+            img: Lamborghini,
+            name: "Lamborghini Huracan",
+            nota: "5.0",
+            reviews: "305",
+            passageiros: "2",
+            marcha: "Auto",
+            arcondicionado: "Air Conditioning",
+            portas: "2",
+            price: "4,500"
+        },
+        {
+            img: BMW,
+            name: "BMW 5 Series",
+            nota: "4.7",
+            reviews: "2150",
+            passageiros: "5",
+            marcha: "Auto",
+            arcondicionado: "Air Conditioning",
+            portas: "4",
+            price: "1,700"
+        },
+        {
+            img: Jaguar,
+            name: "Jaguar XE L P250",
+            nota: "4.5",
+            reviews: "3200",
+            passageiros: "5",
+            marcha: "Manual",
+            arcondicionado: "Ar Condicionado",
+            portas: "4",
+            price: "2,500"
+        },
+        {
+            img: Audi,
+            name: "Audi A4",
+            nota: "4.8",
+            reviews: "150",
+            passageiros: "5",
+            marcha: "Automatic",
+            arcondicionado: "Air Conditioning",
+            portas: "4",
+            price: "3,200"
+        }
+    ];
+    
     return (
         <div>
             <main data-aos="zoom-in" className='mt-60'>
@@ -69,13 +120,14 @@ useEffect(() =>{
                                 <p><strong>${car.price}</strong> <span className='text-gray-500'>/day</span></p>
                             </div>
                             <div className='flex justify-center items-center mt-6'>
-                            <Button Children='Rent Now'/>
+                                <Button Children='Rent Now'/>
                             </div>
                         </div>
                     ))}
                 </section>
                 <div className='flex justify-center items-center border border-gray-300 border-3 max-w-56 mx-auto p-3 rounded-md mb-20'>
-  <button className='font-medium text-base'>Show all vehicles</button></div>
+                    <button className='font-medium text-base'>Show all vehicles</button>
+                </div>
             </main>
         </div>
     );
