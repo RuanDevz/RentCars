@@ -67,7 +67,7 @@ const HeaderLogged = () => {
                 <p className='hover:text-primary cursor-pointer font-medium'>Carros alugados</p>
                 <FaCarSide className='text-4xl text-primary cursor-pointer'/>
               </li>
-              <li className='flex justify-center items-center flex-row-reverse gap-7 ml-3 relative left-0 lg:hidden'>
+              <li onClick={exit} className='flex justify-center items-center flex-row-reverse gap-7 ml-3 relative left-0 lg:hidden'>
                 <p className='hover:text-primary cursor-pointer font-medium'>Sair</p>
                 <IoExitOutline className='text-4xl text-primary cursor-pointer'/>
               </li>
@@ -87,7 +87,7 @@ const HeaderLogged = () => {
             <FaRegUserCircle className='text-4xl text-primary cursor-pointer'/>
 
             {menuactivedesktop && (
-            <div data-aos="fade-down" className='flex flex-col justify-start items-start gap-10 bg-white shadow-2xl rounded p-7 absolute top-0 mt-28 right-60'>
+            <div data-aos="fade-down" className='flex flex-col justify-start items-start gap-10 bg-white shadow-2xl rounded p-7 absolute top-0 right-60 mt-28 '>
               <div className='flex justify-center items-center flex-row-reverse gap-7 ml-3 relative left-0'>
               <p className='hover:text-primary cursor-pointer font-medium'>Meus carros</p>
                 <FaCar className='text-4xl text-primary cursor-pointer'/>

@@ -14,6 +14,7 @@ const App = () => {
   const [menuActive, setMenuActive] = useState(true);
   const [accessToken, setAccessToken] = useState(sessionStorage.getItem('accessToken') || '');
   const [userdata, setUserdata] = useState(sessionStorage.getItem('user') || '');
+  const [cars, setCars] = useState([])
 
   
 
@@ -34,7 +35,8 @@ const App = () => {
       msg, setMsg,
       menuActive, setMenuActive,
       accessToken, setAccessToken,
-      userdata, setUserdata
+      userdata, setUserdata,
+      cars, setCars
     }}>
     <Router>
     <div className='overflow-x-hidden'>

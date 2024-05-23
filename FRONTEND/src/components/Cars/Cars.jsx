@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Jaguar from './Images/Jaguar.png';
 import Audi from './Images/Audi.png';
 import BMW from './Images/BMW.png';
@@ -10,55 +10,25 @@ import Portas from './Images/Portas.png';
 import Star from './Images/Star.png';
 import Button from '../Button/Button';
 import Arrow from './Images/Arrow.png'
+import axios from 'axios'
+import Context from '../../useContext/Context';
 
 const Cars = () => {
-    const cars = [
-        {
-            img: Jaguar,
-            name: 'Jaguar XE L P250',
-            nota: '4.8',
-            reviews: '2436',
-            passageiros: '4',
-            marcha: 'Auto',
-            arcondicionado: 'Air Conditioning',
-            portas: '4',
-            price: '1,800'
-        },
-        {
-            img: Audi,
-            name: 'Audi A4',
-            nota: '4.5',
-            reviews: '1978',
-            passageiros: '5',
-            marcha: 'Auto',
-            arcondicionado: 'Air Conditioning',
-            portas: '4',
-            price: '1,600'
-        },
-        {
-            img: BMW,
-            name: 'BMW 5 Series',
-            nota: '4.7',
-            reviews: '2150',
-            passageiros: '5',
-            marcha: 'Auto',
-            arcondicionado: 'Air Conditioning',
-            portas: '4',
-            price: '1,700'
-        },
-        {
-            img: Lamborghini,
-            name: 'Lamborghini Huracan',
-            nota: '5.0',
-            reviews: '305',
-            passageiros: '2',
-            marcha: 'Auto',
-            arcondicionado: 'Air Conditioning',
-            portas: '2',
-            price: '4,500'
-        }
-    ];
 
+    const {cars, setCars} = useContext(Context)
+
+useEffect(() =>{
+    const fetchData = async () => {
+        try {
+            const response = await axios.get('http://localhost:3000/car');
+            setCars(response.data);
+        } catch (error) {
+            console.error('Erro ao buscar dados:', error);
+        }
+    };
+
+    fetchData();
+}, []);
     return (
         <div>
             <main data-aos="zoom-in" className='mt-60'>
@@ -69,7 +39,7 @@ const Cars = () => {
                 <section className='flex flex-col justify-center items-center lg:flex lg:justify-between lg:flex-row max-w-6xl  mx-auto pb-52'>
                     {cars.map((car, index) => (
                         <div className='max-w-64 font-primary rounded-lg shadow-2xl p-4 mb-4' key={index}>
-                            <img className='pb-5' src={car.img} alt={car.name} />
+                            <img className='pb-5 w-80' src={car.img} alt={car.name} />
                             <h1 className='font-medium text-lg'>{car.name}</h1>
                             <div className='flex items-center pb-4'>
                                 <img src={Star} alt="Star" />
