@@ -3,7 +3,7 @@ import AOS from 'aos'
 import Dashboard from './components/Dahboard/Dashboard'
 import Register from './pages/Register/Register'
 import Login from './pages/Login/Login'
-import DashboardLooged from './components/DashboardLogged/DashboardLooged'
+import DashboardLooged from './components/ComponentLogado/DashboardLogged/DashboardLooged'
 import { BrowserRouter as Router, Routes,Route } from 'react-router-dom'
 import Context from './useContext/Context'
 

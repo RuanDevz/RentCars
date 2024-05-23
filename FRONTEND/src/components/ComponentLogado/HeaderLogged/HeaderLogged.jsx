@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import logo from '../../assets/Images/Logo.png';
-import Button from '../Button/Button';
+import logo from '../../../assets/Images/Logo.png';
+import Button from '../../Button/Button';
 import { Link } from 'react-router-dom';
 import { IoMenu, IoClose } from "react-icons/io5";
 import { FaRegUserCircle } from "react-icons/fa";
@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-import Context from '../../useContext/Context';
+import Context from '../../../useContext/Context';
 
 
 const HeaderLogged = () => {
