@@ -12,8 +12,10 @@ const App = () => {
   const [error, setError] = useState('');
   const [msg, setMsg] = useState('');
   const [menuActive, setMenuActive] = useState(true);
-  const [accessToken, setAccessToken] = useState('')
-  const [userdata, setUserdata] = useState([])
+  const [accessToken, setAccessToken] = useState(sessionStorage.getItem('accessToken') || '');
+  const [userdata, setUserdata] = useState(sessionStorage.getItem('user') || '');
+
+  
 
   useEffect(() => {
     const isMobile = window.innerWidth <= 768;
