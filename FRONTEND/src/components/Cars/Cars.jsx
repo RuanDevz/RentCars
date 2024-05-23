@@ -20,9 +20,6 @@ const Cars = () => {
 
     const [userlogged, setUserlogged] = useState(false)
 
-
-
-
     /* USAR PARA PRODUÇÃO IGNORAR ISSO
     const {cars, setCars} = useContext(Context)
 
@@ -87,16 +84,36 @@ useEffect(() =>{
             price: "3,200"
         }
     ];
+    
 
-    const RentCar = async () =>{
-        if(accessToken && userdata){
-            console.log("Pode alugar carro")
-        }else{
-            setError("Você precisa estar logado para alugar")
-            setShowMessage(true)
-            
+    const RentCar = async () => {
+        try {
+            if (!accessToken || accessToken.trim() === '') {
+                setError("Você precisa estar logado para alugar")
+                setShowMessage(true)
+                return;
+            }
+    
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                }
+            };
+    
+            const response = await axios.get('http://localhost:3000/user/dashboard', config);
+            console.log("Usuário está logado. Pode alugar.");
+        } catch (err) {
+            console.log("Ocorreu um erro ao verificar a autenticação:", err);
         }
-    }
+    };
+    
+
+    useEffect(() =>{
+        RentCar()
+    },[useEffect])
+
+    
+    
     
     return (
         <div>

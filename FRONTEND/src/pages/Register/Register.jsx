@@ -37,12 +37,12 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
   
-    if (username.length < 3) {
+    if (username.length < 5) {
       setError('Seu nome precisa ter pelomenos 3 caracteres');
     } else if (password !== confirmpassword) {
       setError('As senhas não combinam');
     } else if (password.length <= 8) {
-      setError('Sua senha precisa ter mais que 3 caracteres');
+      setError('Sua senha precisa ter mais que 8 ou mais caracteres');
     } else {
 
       setLoading(true)

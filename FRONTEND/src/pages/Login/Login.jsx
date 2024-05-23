@@ -39,13 +39,14 @@ const Login = () => {
 
     if (username.length <= 0) {
       setError('Digite seu usuario');
-      return setShowMessage(true); 
+       return setShowMessage(true); 
     } else if (password.length <= 0) {
       setError('Digite sua senha');
       return setShowMessage(true); 
     }
-  
-    setLoading(true);
+
+    
+
     try {
       const response = await axios.post('http://localhost:3000/user/auth', {
         username: username,
@@ -54,8 +55,6 @@ const Login = () => {
       console.log(response.data);
       setAccessToken(response.data.accessToken);
       setUserdata(response.data.user.username);
-      setMsg('Login efetuado com sucesso!');
-      setShowMessage(true); 
       setLoading(false);
       navigate('/DashboardLooged');
     } catch (error) {

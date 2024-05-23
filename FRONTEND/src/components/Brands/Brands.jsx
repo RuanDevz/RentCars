@@ -40,9 +40,9 @@ const Brands = () => {
         slidesPerView={slidesPerView}
         loop={true}
         autoplay={{ delay: 1200 }} 
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
-        style={{ margin: '0 auto' }} // Adicionando estilo inline para centralizar
+        onSlideChange={() => console.log()}
+        onSwiper={(swiper) => console.log()}
+        style={{ margin: '0 auto' }}
       >
         <SwiperSlide><img src={Audi} alt="Audi" /></SwiperSlide>
         <SwiperSlide><img src={Jaguar} alt="Jaguar" /></SwiperSlide>
