@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
-import logo from '../../../assets/Images/Logo.png';
-import Button from '../../Button/Button';
+import logo from '../../../assets/Images/Logo.png'; 
 import { Link } from 'react-router-dom';
 import { IoMenu, IoClose } from "react-icons/io5";
 import { FaRegUserCircle } from "react-icons/fa";
 import { FaCar } from "react-icons/fa";
 import { IoExitOutline } from "react-icons/io5";
 import { FaCarSide } from "react-icons/fa6";
-import { useNavigate } from 'react-router-dom';
+import { IoCarSport } from "react-icons/io5";
+
 
 
 
@@ -15,7 +15,6 @@ import Context from '../../../useContext/Context';
 
 
 const HeaderLogged = () => {
-    const navigate = useNavigate()
   const [menuActive, setMenuActive] = useState(true);
   const [menuactivedesktop, setMenuactivedesktop] = useState(false)
   const isMobile = window.innerWidth <= 768;
@@ -43,7 +42,7 @@ const HeaderLogged = () => {
   const exit = () =>{
         sessionStorage.setItem('user', '');
         sessionStorage.setItem('accessToken', '')
-        navigate('/')
+        window.location.href="/"
   }
 
   return (
@@ -58,6 +57,10 @@ const HeaderLogged = () => {
               <li className='flex justify-end items-center flex-row-reverse gap-7 ml-3 relative left-0 lg:hidden'>
               <p className='hover:text-primary cursor-pointer font-medium'>Ruanb</p>
                <FaRegUserCircle className='text-4xl text-primary cursor-pointer'/>
+              </li>
+              <li className='flex justify-end items-center flex-row-reverse gap-7 ml-3 relative left-0 lg:hidden'>
+                <p className='hover:text-primary cursor-pointer font-medium'>Adicionar Carros</p>
+                <IoCarSport className='text-4xl text-primary cursor-pointer'/>
               </li>
               <li className='flex justify-center items-center flex-row-reverse gap-7 ml-3 relative left-0 lg:hidden'>
               <p className='hover:text-primary cursor-pointer font-medium'>Meus carros</p>
@@ -88,6 +91,12 @@ const HeaderLogged = () => {
 
             {menuactivedesktop && (
             <div data-aos="fade-down" className='flex flex-col justify-start items-start gap-10 bg-white shadow-2xl rounded p-7 absolute top-0 right-60 mt-28 '>
+              <Link to='/DashboardLooged/Mycar'>
+                            <div className='flex justify-center items-center flex-row-reverse gap-7 ml-3 relative left-0'>
+                <p className='hover:text-primary cursor-pointer font-medium'>Adicionar Carros</p>
+                <IoCarSport className='text-4xl text-primary cursor-pointer'/>
+              </div>
+              </Link>
               <div className='flex justify-center items-center flex-row-reverse gap-7 ml-3 relative left-0'>
               <p className='hover:text-primary cursor-pointer font-medium'>Meus carros</p>
                 <FaCar className='text-4xl text-primary cursor-pointer'/>
