@@ -31,8 +31,6 @@ Router.post('/:userId/cars', async (req, res) => {
         const userId = req.params.userId;
         const carData = req.body;
 
-        console.log(`Received userId: ${userId}`);
-        console.log(`Received carData: ${JSON.stringify(carData)}`);
 
         const user = await User.findByPk(userId);
 

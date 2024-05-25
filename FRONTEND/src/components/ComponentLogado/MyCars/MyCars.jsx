@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import HeaderLogged from '../HeaderLogged/HeaderLogged'
 import CarAudi from '../../CarAudi/CarAudi'
 import Input from '../../Input/Input'
@@ -15,14 +15,15 @@ const MyCars = () => {
     const [doors, setDoors] = useState('')
     const [price, setPrice] = useState('')
     const [imagecar, setImagecar] = useState('')
-    const [nota, setNota] = useState('') 
-    const [reviews, setReviews] = useState('') 
+    const [nota, setNota] = useState(0) 
+    const [reviews, setReviews] = useState(0) 
     const regex = /\B(?=(\d{3})+(?!\d))/g
-    const {id} = useContext(Context)
+
+    const {myid} = useContext(Context)
 
     const Addcar = async (e) => {
         e.preventDefault()
-        await axios.post(`http://localhost:3000/car/${id}/cars`, {
+        await axios.post(`http://localhost:3000/car/${myid}/cars`, {
             name: Namecar,
             passageiros: passagers,
             marcha: marcha,
@@ -46,6 +47,7 @@ const MyCars = () => {
             window.location.reload()
         }).catch((error) => {
             console.error("Erro ao adicionar carro", error);
+            console.log(myid)
         });
     }
 

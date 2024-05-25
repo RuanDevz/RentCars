@@ -98,7 +98,7 @@ const Cars = () => {
                 }
             };
     
-            const response = await axios.get('http://localhost:3000/user/dashboard', config);
+            const response = await axios.get('http://localhost:3000/user/dashboard/user', config);
             console.log("Usuário está logado. Pode alugar.");
         } catch (err) {
             console.log("Ocorreu um erro ao verificar a autenticação:", err);

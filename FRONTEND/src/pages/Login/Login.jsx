@@ -17,7 +17,7 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const { showMessage, setShowMessage, error, setError, msg, setMsg, accessToken, setAccessToken, userdata, setUserdata, Loading, setLoading,id, setId } = useContext(Context);
+  const { showMessage, setShowMessage, error, setError, msg, setMsg, accessToken, setAccessToken, userdata, setUserdata, Loading, setLoading,myid, setmyId } = useContext(Context);
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -55,7 +55,7 @@ const Login = () => {
       console.log(response.data);
       setAccessToken(response.data.accessToken);
       setUserdata(response.data.user.username);
-      setId(response.data.user.id);
+      setmyId(response.data.user.id);
       setLoading(false);
       navigate('/DashboardLooged');
     } catch (error) {
@@ -63,11 +63,13 @@ const Login = () => {
       setShowMessage(true);
     }
   };
+  
 
   useEffect(() => {
     sessionStorage.setItem("accessToken", accessToken);
     sessionStorage.setItem("user", userdata);
-  }, [accessToken, userdata]);
+    sessionStorage.setItem('id', myid)
+  }, [accessToken, userdata,myid]);
 
   return (
     <div>

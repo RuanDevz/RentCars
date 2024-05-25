@@ -2,7 +2,7 @@ const express = require('express')
 const Router = express.Router()
 const bcrypt = require('bcrypt')
 const {sign} = require('jsonwebtoken')
-const {User} = require('../models')
+const {User,Car} = require('../models')
 const Authmiddlaware = require('../Middlaware/Auth')
 
 
@@ -75,14 +75,18 @@ Router.post('/auth', async (req, res) => {
         res.status(500).json({ error: "Erro interno do servidor" });
     }
 });
-Router.get('/dashboard', Authmiddlaware, (req,res) =>{
-  
-    const accessToken = req.headers.authorization.split(' ')[1];
+Router.get('/dashboard/user', Authmiddlaware, async (req, res) => {
+    const userId = req.user.id;
 
-    const user = req.user;
+    try {
+        const user = await User.findByPk(userId);
+        res.json({ user });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Erro interno do servidor" });
+    }
+});
 
-    res.json({ accessToken, user });
-})
 
 
 
