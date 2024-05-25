@@ -78,7 +78,7 @@ const HeaderLogged = () => {
           </nav>
         )}
         <div className='flex items-center justify-between'>
-          <Link to='/'><img className='py-2 px-10' src={logo} alt="logo" /></Link>
+        <Link to='/DashboardLooged'><img className='py-2 px-10' src={logo} alt="logo" /></Link>
           {menuActive ? (
             <IoClose className='text-3xl z-50 cursor-pointer text-primary mr-10 lg:hidden' onClick={toggleMenu} />
           ) : (
@@ -90,7 +90,7 @@ const HeaderLogged = () => {
             <FaRegUserCircle className='text-4xl text-primary cursor-pointer'/>
 
             {menuactivedesktop && (
-            <div data-aos="fade-down" className='flex flex-col justify-start items-start gap-10 bg-white shadow-2xl rounded p-7 absolute top-0 right-60 mt-28 '>
+            <div data-aos="fade-down" className='flex flex-col justify-start items-start gap-10 bg-white shadow-2xl rounded p-7 absolute top-0 right-60 mt-28 z-50 '>
               <Link to='/DashboardLooged/Mycar'>
                             <div className='flex justify-center items-center flex-row-reverse gap-7 ml-3 relative left-0'>
                 <p className='hover:text-primary cursor-pointer font-medium'>Adicionar Carros</p>
