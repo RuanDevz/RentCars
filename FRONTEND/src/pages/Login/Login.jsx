@@ -17,7 +17,7 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const { showMessage, setShowMessage, error, setError, msg, setMsg, accessToken, setAccessToken, userdata, setUserdata, Loading, setLoading } = useContext(Context);
+  const { showMessage, setShowMessage, error, setError, msg, setMsg, accessToken, setAccessToken, userdata, setUserdata, Loading, setLoading,id, setId } = useContext(Context);
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -55,6 +55,7 @@ const Login = () => {
       console.log(response.data);
       setAccessToken(response.data.accessToken);
       setUserdata(response.data.user.username);
+      setId(response.data.user.id);
       setLoading(false);
       navigate('/DashboardLooged');
     } catch (error) {

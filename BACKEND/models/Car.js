@@ -9,15 +9,15 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         nota: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false
         },
         reviews: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false
         },
         passageiros: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false
         },
         marcha: {
@@ -29,14 +29,21 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         portas: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false
         },
         price: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false
         }
     });
 
-    return Car;
+    Car.associate = function(models) { // Correção aqui: era Car.associate, agora é Cars.associate
+        Car.belongsTo(models.User, {
+            foreignKey: 'userId', 
+            as: 'user'
+        });
+    };
+
+    return Car; // Correção aqui: era Car, agora é Car
 };

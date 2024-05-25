@@ -12,6 +12,33 @@ Router.get('/', async (req,res) =>{
     
 })
 
+Router.get('/:userId', async (req,res) =>{
+    const userId = req.params.userId
+    const getuserbyid = await User.findByPk(userId)
+    res.json(getuserbyid)
+
+
+})
+
+Router.get('/:userId/cars', async (req, res) => {
+    try {
+        const userId = req.params.userId;
+        const user = await User.findByPk(userId, {
+            include: [{
+                model: Car,
+                as: 'cars'
+            }]
+        });
+
+        res.status(200).json(user.cars);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+
+
 Router.post('/', async (req, res) =>{
     const {username, password}  = req.body
 

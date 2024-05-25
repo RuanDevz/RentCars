@@ -1,18 +1,21 @@
-const express = require('express')
-const app = express()
-const cors = require('cors')
-const db = require('./models')
+const express = require('express');
+const cors = require('cors');
+const db = require('./models');
+const dotenv = require('dotenv');
 
-app.use(cors())
+dotenv.config();
 
-const Routeruser = require('./routes/user')
-const Routercar = require('./routes/Car')
+const app = express();
 
-app.use(express.json())
+app.use(cors());
+app.use(express.json());
 
-app.use('/user',Routeruser)
-app.use('/car', Routercar)
+const Routeruser = require('./routes/user');
+const Routercar = require('./routes/Car');
 
-db.sequelize.sync().then(() =>{
-    app.listen(3000, () => console.log('Servidor rodandoo'))
-})
+app.use('/user', Routeruser);
+app.use('/car', Routercar);
+
+db.sequelize.sync().then(() => {
+    app.listen(3000, () => console.log('Servidor rodando na porta 3000'));
+});

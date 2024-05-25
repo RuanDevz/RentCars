@@ -23,20 +23,19 @@ const Cars = () => {
     /* USAR PARA PRODUÇÃO IGNORAR ISSO
     const {cars, setCars} = useContext(Context)
 
-useEffect(() =>{
-    const fetchData = async () => {
-        try {
-            const response = await axios.get('http://localhost:3000/car');
-            setCars(response.data);
-        } catch (error) {
-            console.error('Erro ao buscar dados:', error);
-        }
-    };
+    useEffect(() =>{
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://localhost:3000/car');
+                setCars(response.data);
+            } catch (error) {
+                console.error('Erro ao buscar dados:', error);
+            }
+        };
 
-    fetchData();
-}, []);
-*/
-
+        fetchData();
+    }, []);
+    */
 
     const cars = [
         {
@@ -84,7 +83,6 @@ useEffect(() =>{
             price: "3,200"
         }
     ];
-    
 
     const RentCar = async () => {
         try {
@@ -106,24 +104,20 @@ useEffect(() =>{
             console.log("Ocorreu um erro ao verificar a autenticação:", err);
         }
     };
-    
 
-    useEffect(() =>{
+    useEffect(() => {
         RentCar()
-    },[useEffect])
+    }, [accessToken]);
 
-    
-    
-    
     return (
         <div>
             <main data-aos="zoom-in" className='mt-60'>
                 {showMessage && <Popup />}
                 <section className='flex flex-col mx-auto items-center py-5'>
                     <p className='text-primary font-medium py-3 px-10 bg-blue-100 rounded mb-10 w-64 text-center whitespace-nowrap'>POPULAR RENTAL DEALS</p>
-                    <h1 className=' text-center lg:font-primary font-medium text-4xl max-w-xl pb-20'>Most popular cars rental deals</h1>
+                    <h1 className='text-center lg:font-primary font-medium text-4xl max-w-xl pb-20'>Most popular cars rental deals</h1>
                 </section>
-                <section className='flex flex-col justify-center items-center lg:flex lg:justify-between lg:flex-row max-w-6xl  mx-auto pb-52'>
+                <section className='flex flex-col justify-center items-center lg:flex lg:justify-between lg:flex-row max-w-6xl mx-auto pb-52'>
                     {cars.map((car, index) => (
                         <div className='max-w-64 font-primary rounded-lg shadow-2xl p-4 mb-4' key={index}>
                             <img className='pb-5 w-80' src={car.img} alt={car.name} />

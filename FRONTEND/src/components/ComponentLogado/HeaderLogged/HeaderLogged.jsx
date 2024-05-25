@@ -105,7 +105,7 @@ const HeaderLogged = () => {
               <p className='hover:text-primary cursor-pointer font-medium'>Carros alugados</p>
                 <FaCarSide className='text-4xl text-primary cursor-pointer'/>
               </div>
-                <div onClick={exit} className='flex justify-center items-center flex-row-reverse gap-7 ml-3 relative left-0'>
+                <div onClick={exit} className='flex justify-center items-center flex-row-reverse gap-7 ml-3 relative left-0 '>
                 <p className='hover:text-primary cursor-pointer font-medium'>Sair</p>
                 <IoExitOutline className='text-4xl text-primary cursor-pointer'/>
                 </div>
