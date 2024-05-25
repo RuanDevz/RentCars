@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      margin:{
+        'custom': '25rem',
+      },
       colors:{
         primary: "#1572D3",
         hovercolor: "#166bc4",

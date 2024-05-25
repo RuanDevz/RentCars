@@ -85,28 +85,28 @@ const HeaderLogged = () => {
             <IoMenu className='text-3xl z-50 cursor-pointer text-primary mr-10 lg:hidden' onClick={toggleMenu} />
           )}
         </div>
-        <div onClick={toggleMenu} className='hidden lg:flex gap-5 font-primary text-base items-center border-4 border-primary p-4 cursor-pointer'>
+        <div onClick={toggleMenu} className='hidden lg:flex gap-5 font-primary justify-around text-base items-center border-4 border-primary p-4 cursor-pointer relative'>
             <p className='hover:text-primary cursor-pointer'>{userdata}</p>
             <FaRegUserCircle className='text-4xl text-primary cursor-pointer'/>
 
             {menuactivedesktop && (
-            <div data-aos="fade-down" className='flex flex-col justify-start items-start gap-10 bg-white shadow-2xl rounded p-7 absolute top-0 right-60 mt-28 z-50 '>
+            <div data-aos="fade-down" className='flex flex-col justify-start items-start gap-10 bg-white shadow-2xl rounded p-7 px-8 absolute mt-custom z-50  '>
               <Link to='/DashboardLooged/Mycar'>
                             <div className='flex justify-center items-center flex-row-reverse gap-7 ml-3 relative left-0'>
-                <p className='hover:text-primary cursor-pointer font-medium'>Adicionar Carros</p>
+                <p className='hover:text-primary cursor-pointer font-medium whitespace-nowrap'>Adicionar Carros</p>
                 <IoCarSport className='text-4xl text-primary cursor-pointer'/>
               </div>
               </Link>
               <div className='flex justify-center items-center flex-row-reverse gap-7 ml-3 relative left-0'>
-              <p className='hover:text-primary cursor-pointer font-medium'>Meus carros</p>
+              <p className='hover:text-primary cursor-pointer font-medium whitespace-nowrap'>Meus carros</p>
                 <FaCar className='text-4xl text-primary cursor-pointer'/>
               </div>
               <div className='flex justify-center items-center flex-row-reverse gap-7 ml-3 relative left-0'>
-              <p className='hover:text-primary cursor-pointer font-medium'>Carros alugados</p>
+              <p className='hover:text-primary cursor-pointer font-medium whitespace-nowrap'>Carros alugados</p>
                 <FaCarSide className='text-4xl text-primary cursor-pointer'/>
               </div>
                 <div onClick={exit} className='flex justify-center items-center flex-row-reverse gap-7 ml-3 relative left-0 '>
-                <p className='hover:text-primary cursor-pointer font-medium'>Sair</p>
+                <p className='hover:text-primary cursor-pointer font-medium whitespace-nowrap'>Sair</p>
                 <IoExitOutline className='text-4xl text-primary cursor-pointer'/>
                 </div>
             </div>
