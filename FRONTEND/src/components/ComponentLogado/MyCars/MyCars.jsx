@@ -16,16 +16,30 @@ const MyCars = () => {
     const [doors, setDoors] = useState('')
     const [price, setPrice] = useState('')
     const [imagecar, setImagecar] = useState('')
-    const [nota, setNota] = useState('') 
-    const [reviews, setReviews] = useState('') 
+    const [nota, setNota] = useState('6') 
+    const [reviews, setReviews] = useState('6') 
     const regex = /\B(?=(\d{3})+(?!\d))/g
     const [zoom, setZoom] = useState(0.9);
 
-    const {myid, setMsg,msg,setShowMessage,showMessage } = useContext(Context)
+    const {myid, setMsg,msg,setShowMessage,showMessage, error, setError } = useContext(Context)
+
 
     const Addcar = async (e) => {
-        e.preventDefault()
-        await axios.post(`https://rent-cars-jdua.vercel.app/car/${myid}/cars`, {
+    e.preventDefault()
+
+    try {
+        const isEmpty = Object.values({ Namecar, passagers, marcha, Airconditioning, doors, price, imagecar }).some(value => value === '');
+
+        if (isEmpty) {
+             setError('Preencha todos os campos!');
+            setShowMessage(true)
+            setTimeout(() => {
+                window.location.reload()
+            }, 3000);
+            return
+        }
+
+        const response = await axios.post(`http://localhost:3000/car/${myid}/cars`, {
             name: Namecar,
             passageiros: passagers,
             marcha: marcha,
@@ -35,24 +49,28 @@ const MyCars = () => {
             img: imagecar,
             nota: nota,
             reviews: reviews
-        }).then((response) => {
-            setNamecar('')
-            setPassagers('')
-            setMarcha('')
-            setAirconditioning('')
-            setDoors('')
-            setPrice('')
-            setImagecar('')
-            setNota('')
-            setReviews('')
-            console.log(response.data)
-            setMsg(response.data.msg)
-            setShowMessage(true)
-        }).catch((error) => {
-            console.error("Erro ao adicionar carro", error);
-            console.log(myid)
         });
+
+        setNamecar('')
+        setPassagers('')
+        setMarcha('')
+        setAirconditioning('')
+        setDoors('')
+        setPrice('')
+        setImagecar('')
+        setNota('')
+        setReviews('')
+        console.log(response.data)
+        setMsg(response.data.msg)
+        
+    } catch (error) {
+        console.error("Erro ao adicionar carro", error);
+        setError('Erro ao adicionar carro');
     }
+
+    setShowMessage(true)
+}
+
 
     return (
         <div style={{zoom: zoom}}>

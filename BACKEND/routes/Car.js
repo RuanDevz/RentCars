@@ -32,23 +32,23 @@ Router.post('/:userId/cars', async (req, res) => {
         const carData = req.body;
 
 
-        const user = await User.findByPk(userId);
+        
+        
 
-        if (!user) {
-            return res.status(404).json({ error: 'User not found' });
-        }
+        const user = await User.findByPk(userId);
 
         const car = await Car.create({
             ...carData,
             userId: user.id
         });
 
-        res.status(201).json({msg: "Carro adicionado em Meus Carros",car});
+        res.status(201).json({ msg: "Carro adicionado em Meus Carros", car });
     } catch (error) {
         console.error('Error creating car:', error);
         res.status(500).json({ error: error.message });
     }
 });
+
 
 
 
