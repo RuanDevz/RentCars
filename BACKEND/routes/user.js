@@ -1,6 +1,6 @@
 const express = require('express')
 const Router = express.Router()
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const {sign} = require('jsonwebtoken')
 const {User,Car} = require('../models')
 const Authmiddlaware = require('../Middlaware/Auth')
