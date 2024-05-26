@@ -43,7 +43,7 @@ Router.post('/:userId/cars', async (req, res) => {
             userId: user.id
         });
 
-        res.status(201).json(car);
+        res.status(201).json({msg: "Carro adicionado em Meus Carros",car});
     } catch (error) {
         console.error('Error creating car:', error);
         res.status(500).json({ error: error.message });
