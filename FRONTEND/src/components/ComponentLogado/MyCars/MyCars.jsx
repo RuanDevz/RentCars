@@ -39,7 +39,7 @@ const MyCars = () => {
             return
         }
 
-        const response = await axios.post(`http://localhost:3000/car/${myid}/cars`, {
+        const response = await axios.post(`https://rent-cars-jdua.vercel.app/car/${myid}/cars`, {
             name: Namecar,
             passageiros: passagers,
             marcha: marcha,
@@ -50,18 +50,11 @@ const MyCars = () => {
             nota: nota,
             reviews: reviews
         });
-
-        setNamecar('')
-        setPassagers('')
-        setMarcha('')
-        setAirconditioning('')
-        setDoors('')
-        setPrice('')
-        setImagecar('')
-        setNota('')
-        setReviews('')
         console.log(response.data)
         setMsg(response.data.msg)
+        setTimeout(() => {
+            window.location.reload()
+        }, 3000);
         
     } catch (error) {
         console.error("Erro ao adicionar carro", error);
