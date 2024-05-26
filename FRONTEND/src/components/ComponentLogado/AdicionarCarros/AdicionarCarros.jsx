@@ -8,7 +8,7 @@ import axios from 'axios'
 import Context from '../../../useContext/Context'
 import Popup from '../../Popup/Popup'
 
-const MyCars = () => {
+const AdicionarCarros = () => {
     const [Namecar, setNamecar] = useState('')
     const [passagers, setPassagers] = useState('')
     const [marcha, setMarcha] = useState('')
@@ -69,14 +69,14 @@ const MyCars = () => {
         <div style={{zoom: zoom}}>
             <HeaderLogged />
             {showMessage && <Popup />}
-            <main className='font-primary flex justify-between'>
+            <main className='font-primary lg:flex justify-between'>
                 <section>
                     <div className='flex justify-center mx-auto mt-10 p-5 lg:mt-20 whitespace-nowrap text-primary lg:text-primary font-medium py-3 px-14 bg-blue-100 rounded mb-10 max-w-64'>
                         <h1 className='text-2xl text-primary '>Alugue o seu carro</h1>
                     </div>
                     <CarAudi/>
                 </section>
-                <section className='mt-10 mr-28'>
+                <section className='flex justify-center items-center mt-10 lg:mr-28'>
                     <form className='border-4 border-primary p-2 rounded font-primary mb-28' onSubmit={Addcar}>
                         <p className='py-5 text-base'>Qual é o nome do seu carro</p>
                         <Input value={Namecar} onChange={(e) => setNamecar(e.target.value)} maxLength='20' placeholder='Marca do Carro' />
@@ -143,4 +143,4 @@ const MyCars = () => {
     )
 }
 
-export default MyCars
+export default AdicionarCarros

@@ -58,14 +58,18 @@ const HeaderLogged = () => {
               <p className='hover:text-primary cursor-pointer font-medium'>Ruanb</p>
                <FaRegUserCircle className='text-4xl text-primary cursor-pointer'/>
               </li>
+              <Link to='/DashboardLooged/Adicionarcarros'>
               <li className='flex justify-end items-center flex-row-reverse gap-7 ml-3 relative left-0 lg:hidden'>
                 <p className='hover:text-primary cursor-pointer font-medium'>Adicionar Carros</p>
                 <IoCarSport className='text-4xl text-primary cursor-pointer'/>
               </li>
+              </Link>
+              <Link to='/DashboardLooged/Meuscarros'>
               <li className='flex justify-center items-center flex-row-reverse gap-7 ml-3 relative left-0 lg:hidden'>
               <p className='hover:text-primary cursor-pointer font-medium'>Meus carros</p>
                 <FaCar className='text-4xl text-primary cursor-pointer'/>
               </li>
+              </Link>
               <li className='flex justify-center items-center flex-row-reverse gap-7 ml-3 relative left-0 lg:hidden'>
                 <p className='hover:text-primary cursor-pointer font-medium'>Carros alugados</p>
                 <FaCarSide className='text-4xl text-primary cursor-pointer'/>
@@ -91,16 +95,18 @@ const HeaderLogged = () => {
 
             {menuactivedesktop && (
             <div data-aos="fade-down" className='flex flex-col justify-start items-start gap-10 bg-white shadow-2xl rounded p-7 px-8 absolute mt-custom z-50  '>
-              <Link to='/DashboardLooged/Mycar'>
+              <Link to='/DashboardLooged/Adicionarcarros'>
                             <div className='flex justify-center items-center flex-row-reverse gap-7 ml-3 relative left-0'>
                 <p className='hover:text-primary cursor-pointer font-medium whitespace-nowrap'>Adicionar Carros</p>
                 <IoCarSport className='text-4xl text-primary cursor-pointer'/>
               </div>
               </Link>
+              <Link to='/DashboardLooged/Meuscarros'>
               <div className='flex justify-center items-center flex-row-reverse gap-7 ml-3 relative left-0'>
               <p className='hover:text-primary cursor-pointer font-medium whitespace-nowrap'>Meus carros</p>
                 <FaCar className='text-4xl text-primary cursor-pointer'/>
               </div>
+              </Link>
               <div className='flex justify-center items-center flex-row-reverse gap-7 ml-3 relative left-0'>
               <p className='hover:text-primary cursor-pointer font-medium whitespace-nowrap'>Carros alugados</p>
                 <FaCarSide className='text-4xl text-primary cursor-pointer'/>

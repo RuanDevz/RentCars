@@ -6,7 +6,8 @@ import Login from './pages/Login/Login'
 import DashboardLooged from './components/ComponentLogado/DashboardLogged/DashboardLooged'
 import { BrowserRouter as Router, Routes,Route } from 'react-router-dom'
 import Context from './useContext/Context'
-import MyCars from './components/ComponentLogado/MyCars/MyCars'
+import AdicionarCarros from './components/ComponentLogado/AdicionarCarros/AdicionarCarros'
+import Meuscarros from './components/ComponentLogado/MeusCarros/MeusCarros'
 
 const App = () => {
   const [showMessage, setShowMessage] = useState(false);
@@ -50,7 +51,8 @@ const App = () => {
       <Route path='/Register' element={<Register/>} />
       <Route path='Login' element={<Login/>} />
       <Route path='/DashboardLooged' element={<DashboardLooged />} />
-      <Route path='/DashboardLooged/Mycar' element={<MyCars/>} />
+      <Route path='/DashboardLooged/Adicionarcarros' element={<AdicionarCarros/>} />
+      <Route path='/DashboardLooged/Meuscarros' element={<Meuscarros />}/>
       </Routes>
     </div>
     </Router>
