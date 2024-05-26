@@ -25,7 +25,7 @@ const MyCars = () => {
 
     const Addcar = async (e) => {
         e.preventDefault()
-        await axios.post(`http://localhost:3000/car/${myid}/cars`, {
+        await axios.post(`https://rent-cars-jdua.vercel.app/car/${myid}/cars`, {
             name: Namecar,
             passageiros: passagers,
             marcha: marcha,

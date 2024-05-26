@@ -47,7 +47,7 @@ const Register = () => {
 
       setLoading(true)
       try {
-        const response = await axios.post('http://localhost:3000/user', {
+        const response = await axios.post('https://rent-cars-jdua.vercel.app/user', {
           username: username,
           password: password
         });
