@@ -12,14 +12,12 @@ import LoadingComponent from '../../LoadingComponent/LoadingComponent'
 const MeusCarros = () => {
     const { myid, setLoading, loading } = useContext(Context)
     const [mycars, setMycars] = useState([])
-    const [carid, setCarid] = useState('')
 
     useEffect(() => {
         setLoading(true)
         axios.get(`https://rent-cars-jdua.vercel.app/user/${myid}/cars`)
             .then((response) => {
                 setMycars(response.data)
-                setCarid(response.data.id)
                 setLoading(false)
             })
             .catch((error) => {
@@ -28,11 +26,15 @@ const MeusCarros = () => {
             })
     }, [myid, setLoading]) 
 
-    const Deletecar = async () =>{
-      await axios.delete(`http://rent-cars-jdua.vercel.app/car/${myid}/cars/${carid}`)
-      .then((response) =>{
-        console.log(response.data.msg)
-      })
+    const Deletecar = async (carId) => {
+        await axios.delete(`https://rent-cars-jdua.vercel.app/user/${myid}/cars/${carId}`)
+            .then((response) => {
+                console.log(response.data.msg)
+                setMycars(mycars.filter(car => car.id !== carId))
+            })
+            .catch((error) => {
+                console.error("Erro ao deletar car", error)
+            })
     }
 
     return (
@@ -59,7 +61,7 @@ const MeusCarros = () => {
                                     <div className='flex gap-2 flex-wrap items-end gap-5 border-b border-gray-300'>
                                         <div className='flex py-1'>
                                             <img src={Passageiro} alt="Passageiro" />
-                                            <p className='text-xs text-gray-500'>{car.passageiros} Passagers</p>
+                                            <p className='text-xs text-gray-500'>{car.passageiros} Passageiros</p>
                                         </div>
                                         <div className='flex gap-2 py-1'>
                                             <img src={Marcha} alt="Marcha" />
@@ -71,17 +73,18 @@ const MeusCarros = () => {
                                         </div>
                                         <div className='flex gap-2 py-1 pb-6'>
                                             <img src={Portas} alt="Portas" />
-                                            <p className='text-xs text-gray-500'>{car.portas} Doors</p>
+                                            <p className='text-xs text-gray-500'>{car.portas} Portas</p>
                                         </div>
                                     </div>
                                     <div className='flex justify-between pt-5 font-primary'>
-                                        <p>Price</p>
-                                        <p><strong>${car.price}</strong> <span className='text-gray-500'>/day</span></p>
+                                        <p>Preço</p>
+                                        <p><strong>${car.price}</strong> <span className='text-gray-500'>/dia</span></p>
                                     </div>
                                     <div className='flex justify-around items-center mt-6 font-primary'>
                                         <button className='bg-blue-600 text-white rounded p-3'>Editar</button>
-                                        <button onClick={Deletecar} className='bg-red-600 text-white rounded p-3'>Remover</button>
+                                        <button onClick={() => Deletecar(car.id)} className='bg-red-600 text-white rounded p-3'>Remover</button>
                                     </div>
+                                    <p>{car.id}</p>
                                 </div>
                             ))
                         ) : (
