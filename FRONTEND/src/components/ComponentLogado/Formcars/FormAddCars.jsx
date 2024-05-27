@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Context from '../../../useContext/Context'
 import Input from '../../Input/Input'
 import Button from '../../Button/Button'
+import axios from 'axios'
 const FormAddCars = () => {
     const [Namecar, setNamecar] = useState('')
     const [passagers, setPassagers] = useState('')
@@ -14,7 +15,7 @@ const FormAddCars = () => {
     const [nota, setNota] = useState('6') 
     const [reviews, setReviews] = useState('6') 
     const regex = /\B(?=(\d{3})+(?!\d))/g
-    
+
 
     const {myid, setMsg,msg,setShowMessage,showMessage, error, setError } = useContext(Context)
 
@@ -115,7 +116,7 @@ const FormAddCars = () => {
                             <Input value={imagecar} onChange={(e) => setImagecar(e.target.value)} htmlFor='preco' children='Preço da diaria do seu carro' placeholder='URL da imagem'/>
                         </div>
                         <div className='flex justify-center items-center mt-10 mb-7'>
-                            <Button type="submit" Children='SALVAR'/>
+                            <Button onClick={Addcar} type="submit" Children='SALVAR'/>
                             
                         </div>
                     </form>

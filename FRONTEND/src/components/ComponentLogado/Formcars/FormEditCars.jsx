@@ -4,9 +4,10 @@ import axios from 'axios';
 import Context from '../../../useContext/Context';
 import Input from '../../Input/Input';
 import Button from '../../Button/Button';
+import Popup from '../../Popup/Popup';
 
 const FormEditCars = () => {
-  const { setMycars, mycars, myid, carData, setCarData } = useContext(Context);
+  const { setMycars, mycars, myid, carData, setCarData, showMessage, setShowMessage, setMsg, msg, setError, error } = useContext(Context);
   const navigate = useNavigate()
 
   const [carId, setCardid] = useState('')
@@ -67,6 +68,8 @@ const FormEditCars = () => {
 
     try {
       const response = await axios.put(`https://rent-cars-jdua.vercel.app/car/${myid}/cars/${carId}`, updatedData);
+      setShowMessage(true)
+      setMsg('Carro atualizado com sucesso!')
       setTimeout(() => {
         navigate('/DashboardLooged/Meuscarros')
         window.location.reload()
@@ -74,6 +77,8 @@ const FormEditCars = () => {
       console.log(response.data.msg);
     } catch (error) {
       console.error("Erro ao atualizar carro", error);
+      setShowMessage(true)
+      setMsg('Erro ao atualizar carro')
     }
   };
 
@@ -86,6 +91,9 @@ const FormEditCars = () => {
     <div>
       <form className='border-4 border-primary p-2 rounded font-primary mb-28' onSubmit={handleSubmit}>
         <p className='py-5 text-base'>Qual é o nome do seu carro</p>
+        <div data-aos='fade-left'>
+        {showMessage && <Popup/>}
+        </div>
         <Input value={namecar} onChange={(e) => setNamecar(e.target.value)} maxLength='20' placeholder='Marca do Carro' />
         <div>
           <p className='py-5 text-base'>Quantos passageiros cabem em seu carro?</p>
