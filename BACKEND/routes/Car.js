@@ -31,10 +31,6 @@ Router.post('/:userId/cars', async (req, res) => {
         const userId = req.params.userId;
         const carData = req.body;
 
-
-        
-        
-
         const user = await User.findByPk(userId);
 
         const car = await Car.create({
@@ -48,6 +44,36 @@ Router.post('/:userId/cars', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+
+Router.delete('/:userId/cars/:carId', async (req, res) => {
+    try {
+        const {userId, carId} = req.params.userId;
+
+        const user = await User.findByPk(userId);
+        
+
+        if (!user) {
+            return res.status(404).json({ error: "Usuário não encontrado" });
+        }
+
+        const result = await Car.destroy({
+            where: {
+                carId: carId,
+                userId: userId,
+            }
+        });
+
+        if (result) {
+            return res.status(200).json({ msg: "Carro removido com sucesso!" });
+        } else {
+            return res.status(404).json({ error: "Carro não encontrado" });
+        }
+    } catch (error) {
+        console.error('Error deleting car:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
 
 
 

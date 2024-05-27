@@ -12,12 +12,14 @@ import LoadingComponent from '../../LoadingComponent/LoadingComponent'
 const MeusCarros = () => {
     const { myid, setLoading, loading } = useContext(Context)
     const [mycars, setMycars] = useState([])
+    const [carid, setCarid] = useState('')
 
     useEffect(() => {
         setLoading(true)
         axios.get(`https://rent-cars-jdua.vercel.app/user/${myid}/cars`)
             .then((response) => {
                 setMycars(response.data)
+                setCarid(response.data.id)
                 setLoading(false)
             })
             .catch((error) => {
@@ -25,6 +27,13 @@ const MeusCarros = () => {
                 setLoading(false)
             })
     }, [myid, setLoading]) 
+
+    const Deletecar = async () =>{
+      await axios.delete(`http://rent-cars-jdua.vercel.app/car/${myid}/cars/${carid}`)
+      .then((response) =>{
+        console.log(response.data.msg)
+      })
+    }
 
     return (
         <div>
@@ -71,7 +80,7 @@ const MeusCarros = () => {
                                     </div>
                                     <div className='flex justify-around items-center mt-6 font-primary'>
                                         <button className='bg-blue-600 text-white rounded p-3'>Editar</button>
-                                        <button className='bg-red-600 text-white rounded p-3'>Remover</button>
+                                        <button onClick={Deletecar} className='bg-red-600 text-white rounded p-3'>Remover</button>
                                     </div>
                                 </div>
                             ))
