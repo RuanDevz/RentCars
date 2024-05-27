@@ -17,7 +17,7 @@ const MeusCarros = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`https://rent-cars-jdua.vercel.app/user/${myid}/cars`)
+    axios.get(`http://rent-cars-jdua.vercel.app/user/${myid}/cars`)
       .then((response) => {
         setMycars(response.data);
         setLoading(false);
@@ -41,7 +41,7 @@ const MeusCarros = () => {
   const Updatedcar = async (carId) => {
     try {
       const response = await axios.get(`http://rent-cars-jdua.vercel.app/car/${myid}/cars/${carId}`);
-      setCarData(response.data); // Armazena os dados do carro no contexto
+      setCarData(response.data);
       navigate(`/DashboardLogged/Meuscarros/editar`);
     } catch (error) {
       console.error("Erro ao buscar dados do carro", error);
