@@ -54,7 +54,7 @@ Router.get('/:userId/cars/:carId', async (req,res) =>{
         return res.status(404).json({ error: "Usuário não encontrado" });
     }
 
-    const car = await Car.findoOne({
+    const car = await Car.findOne({
         where: {
             id: carId,
             userId: userId
