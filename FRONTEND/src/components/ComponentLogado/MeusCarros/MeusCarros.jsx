@@ -17,7 +17,7 @@ const MeusCarros = () => {
 
     useEffect(() => {
         setLoading(true)
-        axios.get(`https://rent-cars-three.vercel.app/user/${myid}/cars`)
+        axios.get(`https://rent-cars-jdua.vercel.app/user/${myid}/cars`)
             .then((response) => {
                 setMycars(response.data)
                 setLoading(false)

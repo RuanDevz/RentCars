@@ -17,7 +17,7 @@ const Editar = () => {
             portas: "",
             price: ""
         };
-        await axios.put(`https://rent-cars-three.vercel.app/user/${myid}/cars/${carId}`, updatedData)
+        await axios.put(`https://rent-cars-jdua.vercel.app/user/${myid}/cars/${carId}`, updatedData)
             .then((response) => {
                 console.log(response.data.msg);
                 setMycars(mycars.filter(car => car.id !== carId));
