@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 const MeusCarros = () => {
   
   const navigate = useNavigate();
-  const { myid, setLoading, loading, mycars, setMycars, carId, setCarId } = useContext(Context);
+  const { myid, setLoading, loading, mycars, setMycars, setCarData } = useContext(Context);
 
   useEffect(() => {
     setLoading(true);
@@ -28,13 +28,23 @@ const MeusCarros = () => {
       });
   }, [myid, setLoading, setMycars]);
 
-  const Deletecar = async () => {
+  const Deletecar = async (carId) => {
     try {
       const response = await axios.delete(`https://rent-cars-jdua.vercel.app/car/${myid}/cars/${carId}`);
       console.log(response.data.msg);
       setMycars(mycars.filter(car => car.id !== carId));
     } catch (error) {
       console.error("Erro ao deletar car", error);
+    }
+  };
+
+  const Updatedcar = async (carId) => {
+    try {
+      const response = await axios.get(`http://rent-cars-jdua.vercel.app/car/${myid}/cars/${carId}`);
+      setCarData(response.data); // Armazena os dados do carro no contexto
+      navigate(`/DashboardLogged/Meuscarros/editar`);
+    } catch (error) {
+      console.error("Erro ao buscar dados do carro", error);
     }
   };
 
@@ -82,7 +92,7 @@ const MeusCarros = () => {
                     <p><strong>R$ {car.price}</strong> <span className='text-gray-500'>/dia</span></p>
                   </div>
                   <div className='flex justify-around items-center mt-6 font-primary'>
-                  <button onClick={() => navigate(`/DashboardLogged/Meuscarros/editar`)} className='bg-blue-600 text-white rounded p-3'>Editar</button>
+                    <button onClick={() => Updatedcar(car.id)} className='bg-blue-600 text-white rounded p-3'>Editar</button>
                     <button onClick={() => Deletecar(car.id)} className='bg-red-600 text-white rounded p-3'>Remover</button>
                   </div>
                   <p>{car.id}</p>

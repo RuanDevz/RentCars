@@ -6,7 +6,7 @@ import Input from '../../Input/Input';
 import Button from '../../Button/Button';
 
 const FormEditCars = () => {
-  const { setMycars, mycars, myid, setCarId } = useContext(Context);
+  const { setMycars, mycars, myid, carData, setCarData } = useContext(Context);
   const { carId } = useParams();
 
   const [namecar, setNamecar] = useState('');
@@ -18,11 +18,28 @@ const FormEditCars = () => {
   const [imagecar, setImagecar] = useState('');
 
   useEffect(() => {
-    console.log('carId:', carId);
     if (carId) {
-      setCarId(carId);
+      axios.get(`https://rent-cars-jdua.vercel.app/car/${myid}/cars/${carId}`)
+        .then((response) => {
+          setCarData(response.data);
+        })
+        .catch((error) => {
+          console.error("Erro ao buscar dados do carro", error);
+        });
     }
-  }, [carId, setCarId]);
+  }, [carId, myid, setCarData]);
+
+  useEffect(() => {
+    if (carData) {
+      setNamecar(carData.name);
+      setPassagers(carData.passageiros);
+      setMarcha(carData.marcha);
+      setAirconditioning(carData.arcondicionado);
+      setDoors(carData.portas);
+      setPrice(carData.price);
+      setImagecar(carData.img);
+    }
+  }, [carData]);
 
   const Updatecar = async () => {
     if (!myid || !carId) {
