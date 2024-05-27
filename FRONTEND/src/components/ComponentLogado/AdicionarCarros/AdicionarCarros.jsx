@@ -39,7 +39,7 @@ const AdicionarCarros = () => {
             return
         }
 
-        const response = await axios.post(`https://rent-cars-jdua.vercel.app/car/${myid}/cars`, {
+        const response = await axios.post(`https://rent-cars-three.vercel.app/car/${myid}/cars`, {
             name: Namecar,
             passageiros: passagers,
             marcha: marcha,

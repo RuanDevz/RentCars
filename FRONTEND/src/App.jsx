@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Routes,Route } from 'react-router-dom'
 import Context from './useContext/Context'
 import AdicionarCarros from './components/ComponentLogado/AdicionarCarros/AdicionarCarros'
 import Meuscarros from './components/ComponentLogado/MeusCarros/MeusCarros'
+import Editar from './pages/Editar/Editar'
 
 const App = () => {
   const [showMessage, setShowMessage] = useState(false);
@@ -19,6 +20,7 @@ const App = () => {
   const [myid, setmyId] = useState(sessionStorage.getItem('id') || '')
   const [cars, setCars] = useState([])
   const [Loading, setLoading] = useState(false)
+  const [mycars, setMycars] = useState([])
 
   
 
@@ -42,7 +44,8 @@ const App = () => {
       userdata, setUserdata,
       cars, setCars,
       Loading, setLoading,
-      myid, setmyId
+      myid, setmyId,
+      mycars, setMycars
     }}>
     <Router>
     <div className='overflow-x-hidden'>
@@ -53,6 +56,7 @@ const App = () => {
       <Route path='/DashboardLooged' element={<DashboardLooged />} />
       <Route path='/DashboardLooged/Adicionarcarros' element={<AdicionarCarros/>} />
       <Route path='/DashboardLooged/Meuscarros' element={<Meuscarros />}/>
+      <Route path='/DashboardLooged/Meuscarros/editar' element={<Editar/>}/>
       </Routes>
     </div>
     </Router>

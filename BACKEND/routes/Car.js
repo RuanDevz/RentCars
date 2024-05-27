@@ -47,7 +47,7 @@ Router.post('/:userId/cars', async (req, res) => {
 
 Router.delete('/:userId/cars/:carId', async (req, res) => {
     try {
-        const {userId, carId} = req.params.userId;
+        const {userId, carId} = req.params;
 
         const user = await User.findByPk(userId);
         
@@ -58,7 +58,7 @@ Router.delete('/:userId/cars/:carId', async (req, res) => {
 
         const result = await Car.destroy({
             where: {
-                carId: carId,
+                id: carId,
                 userId: userId,
             }
         });
@@ -73,6 +73,38 @@ Router.delete('/:userId/cars/:carId', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+
+Router.put('/:userId/cars/:carId', async (req, res) => {
+    try {
+        const { userId, carId } = req.params;
+        const carData = req.body; 
+
+        const user = await User.findByPk(userId);
+        
+        if (!user) {
+            return res.status(404).json({ error: "Usuário não encontrado" });
+        }
+
+        const car = await Car.findOne({
+            where: {
+                id: carId,
+                userId: userId,
+            }
+        });
+
+        if (!car) {
+            return res.status(404).json({ error: "Carro não encontrado" });
+        }
+
+        await car.update(carData); 
+
+        return res.status(200).json({ msg: "Carro atualizado com sucesso!", car });
+    } catch (error) {
+        console.error('Error updating car:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
 
 
 

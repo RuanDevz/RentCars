@@ -10,12 +10,11 @@ import Arcondicionado from './Images/Arcondicionado.png'
 import LoadingComponent from '../../LoadingComponent/LoadingComponent'
 
 const MeusCarros = () => {
-    const { myid, setLoading, loading } = useContext(Context)
-    const [mycars, setMycars] = useState([])
+    const { myid, setLoading, loading,mycars, setMycars } = useContext(Context)
 
     useEffect(() => {
         setLoading(true)
-        axios.get(`https://rent-cars-jdua.vercel.app/user/${myid}/cars`)
+        axios.get(`https://rent-cars-three.vercel.app/user/${myid}/cars`)
             .then((response) => {
                 setMycars(response.data)
                 setLoading(false)
@@ -27,15 +26,20 @@ const MeusCarros = () => {
     }, [myid, setLoading]) 
 
     const Deletecar = async (carId) => {
-        await axios.delete(`https://rent-cars-jdua.vercel.app/user/${myid}/cars/${carId}`)
+        await axios.delete(`https://rent-cars-three.vercel.app/user/${myid}/cars/${carId}`)
             .then((response) => {
                 console.log(response.data.msg)
                 setMycars(mycars.filter(car => car.id !== carId))
+                
             })
             .catch((error) => {
                 console.error("Erro ao deletar car", error)
             })
+
+            window.location.reload()
     }
+
+    
 
     return (
         <div>
@@ -81,8 +85,8 @@ const MeusCarros = () => {
                                         <p><strong>${car.price}</strong> <span className='text-gray-500'>/dia</span></p>
                                     </div>
                                     <div className='flex justify-around items-center mt-6 font-primary'>
-                                        <button className='bg-blue-600 text-white rounded p-3'>Editar</button>
-                                        <button onClick={() => Deletecar(car.id)} className='bg-red-600 text-white rounded p-3'>Remover</button>
+                                        <button onClick={() => navigate('/DashboardLooged/Meuscarros/editar')} className='bg-blue-600 text-white rounded p-3'>Editar</button>
+                                        <button onClick={Deletecar} className='bg-red-600 text-white rounded p-3'>Remover</button>
                                     </div>
                                     <p>{car.id}</p>
                                 </div>
