@@ -1,36 +1,29 @@
 import React, { useContext } from 'react';
-import axios from 'axios';
-import Context from '../../useContext/Context';
+
+import car from '../../assets/Images/Car.png';
+
+import HeaderLogged from '../../components/ComponentLogado/HeaderLogged/HeaderLogged';
+import Footer from '../../components/Footer/Footer';
+import FormEditCars from '../../components/ComponentLogado/Formcars/FormEditCars';
 
 const Editar = () => {
-    const { setMycars, mycars, myid } = useContext(Context);
-
-    const Updatecar = async (carId) => {
-        const updatedData = {
-            img: "",
-            name: "",
-            nota: "",
-            reviews: "",
-            passageiros: "",
-            marcha: "",
-            arcondicionado: "",
-            portas: "",
-            price: ""
-        };
-        await axios.put(`https://rent-cars-jdua.vercel.app/user/${myid}/cars/${carId}`, updatedData)
-            .then((response) => {
-                console.log(response.data.msg);
-                setMycars(mycars.filter(car => car.id !== carId));
-            })
-            .catch((error) => {
-                console.error("Erro ao atualizar carro", error);
-            });
-    };
-
     return (
         <div>
-            <h1>Editar carro</h1>
-            <button onClick={() => Updatecar(carId)}>Editar</button>
+            <HeaderLogged/>
+            <div className='flex justify-center mx-auto mt-10 p-5 lg:mt-20 whitespace-nowrap text-primary lg:text-primary font-medium py-3 px-14 bg-blue-100 rounded mb-10 max-w-64'>
+                <h1 className='text-2xl text-primary'>Editar seu carro</h1>
+            </div>
+            <main className='flex justify-between flex-row-reverse'>
+                <section>
+                <img data-aos="zoom-in" className='mt-28' src={car} alt="Car" />
+                </section>
+                <section className='ml-20 absolute top-0 left-0 mt-32'>
+                    <FormEditCars/>
+                </section>
+            </main>
+            <div className='mt-64'>
+            <Footer/>
+            </div>
         </div>
     );
 };

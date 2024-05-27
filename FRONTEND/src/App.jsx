@@ -9,6 +9,7 @@ import Context from './useContext/Context';
 import AdicionarCarros from './components/ComponentLogado/AdicionarCarros/AdicionarCarros';
 import Meuscarros from './components/ComponentLogado/MeusCarros/MeusCarros';
 import Editar from './pages/Editar/Editar';
+import FormEditCars from './components/ComponentLogado/Formcars/FormEditCars';
 
 const App = () => {
   const [showMessage, setShowMessage] = useState(false);
@@ -21,6 +22,7 @@ const App = () => {
   const [cars, setCars] = useState([]);
   const [Loading, setLoading] = useState(false);
   const [mycars, setMycars] = useState([]);
+  const [carId, setCarId] = useState('');
 
   useEffect(() => {
     const isMobile = window.innerWidth <= 768;
@@ -42,7 +44,8 @@ const App = () => {
       cars, setCars,
       Loading, setLoading,
       myid, setmyId,
-      mycars, setMycars
+      mycars, setMycars,
+      carId, setCarId
     }}>
       <Router>
         <div className='overflow-x-hidden'>

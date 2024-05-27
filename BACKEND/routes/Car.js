@@ -45,6 +45,30 @@ Router.post('/:userId/cars', async (req, res) => {
     }
 });
 
+Router.get('/:userId/cars/:carId', async (req,res) =>{
+    const {userId, carId} = req.params
+
+    const user = await User.findByPk(userId)
+
+    if (!user) {
+        return res.status(404).json({ error: "Usuário não encontrado" });
+    }
+
+    const car = await Car.findoOne({
+        where: {
+            id: carId,
+            userId: userId
+        }
+        
+    })
+
+    if (!car) {
+        return res.status(404).json({ error: "Carro não encontrado ou não pertence a este usuário" });
+    }
+
+    res.json(car)
+})
+
 Router.delete('/:userId/cars/:carId', async (req, res) => {
     try {
         const {userId, carId} = req.params;

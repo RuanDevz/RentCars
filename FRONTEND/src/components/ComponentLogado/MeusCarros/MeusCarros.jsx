@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 const MeusCarros = () => {
   
   const navigate = useNavigate();
-  const { myid, setLoading, loading, mycars, setMycars } = useContext(Context);
+  const { myid, setLoading, loading, mycars, setMycars, carId, setCarId } = useContext(Context);
 
   useEffect(() => {
     setLoading(true);
@@ -28,7 +28,7 @@ const MeusCarros = () => {
       });
   }, [myid, setLoading, setMycars]);
 
-  const Deletecar = async (carId) => {
+  const Deletecar = async () => {
     try {
       const response = await axios.delete(`https://rent-cars-jdua.vercel.app/car/${myid}/cars/${carId}`);
       console.log(response.data.msg);
@@ -79,12 +79,13 @@ const MeusCarros = () => {
                   </div>
                   <div className='flex justify-between pt-5 font-primary'>
                     <p>Preço</p>
-                    <p><strong>${car.price}</strong> <span className='text-gray-500'>/dia</span></p>
+                    <p><strong>R$ {car.price}</strong> <span className='text-gray-500'>/dia</span></p>
                   </div>
                   <div className='flex justify-around items-center mt-6 font-primary'>
-                    <button onClick={() => navigate('/DashboardLooged/Meuscarros/editar')} className='bg-blue-600 text-white rounded p-3'>Editar</button>
+                  <button onClick={() => navigate(`/DashboardLogged/Meuscarros/editar`)} className='bg-blue-600 text-white rounded p-3'>Editar</button>
                     <button onClick={() => Deletecar(car.id)} className='bg-red-600 text-white rounded p-3'>Remover</button>
                   </div>
+                  <p>{car.id}</p>
                 </div>
               ))
             ) : (

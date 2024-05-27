@@ -147,7 +147,7 @@ const Cars = () => {
                             </div>
                             <div className='flex justify-between pt-5 font-primary'>
                                 <p>Price</p>
-                                <p><strong>${car.price}</strong> <span className='text-gray-500'>/day</span></p>
+                                <p><strong>R${car.price}</strong> <span className='text-gray-500'>/day</span></p>
                             </div>
                             <div className='flex justify-center items-center mt-6'>
                                 <Button onClick={RentCar} Children='Rent Now'/>
