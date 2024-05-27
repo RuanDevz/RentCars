@@ -56,7 +56,7 @@ const MeusCarros = () => {
       <HeaderLogged />
       <main>
         <section className='flex justify-center items-center'>
-          <p className='text-primary font-medium py-3 px-10 bg-blue-100 rounded mb-10 w-64 text-center whitespace-nowrap'>
+          <p className='text-primary font-medium py-3 mt-10 px-10 bg-blue-100 rounded mb-10 w-64 text-center whitespace-nowrap'>
             MEUS CARROS
           </p>
         </section>

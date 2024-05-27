@@ -15,22 +15,22 @@ const SearchBar = () => {
 
   const togglePickDate = () => {
     setPickDateVisible(!pickDateVisible);
-    setReturnDateVisible(false); // Fechar o seletor de data de retorno se estiver aberto
+    setReturnDateVisible(false); 
   };
 
   const toggleReturnDate = () => {
     setReturnDateVisible(!returnDateVisible);
-    setPickDateVisible(false); // Fechar o seletor de data de retirada se estiver aberto
+    setPickDateVisible(false); 
   };
 
   const handlePickDateChange = (e) => {
     setPickSelectedDate(e.target.value);
-    setPickDateVisible(false); // Fechar o modal após selecionar a data
+    setPickDateVisible(false); 
   };
 
   const handleReturnDateChange = (e) => {
     setReturnSelectedDate(e.target.value);
-    setReturnDateVisible(false); // Fechar o modal após selecionar a data
+    setReturnDateVisible(false);
   };
 
 
@@ -42,8 +42,8 @@ const SearchBar = () => {
           <img className='w-10' src={Location} alt="location" />
           </div>
           <div>
-            <h1>Location</h1>
-            <p className='text-gray-500'>Choose your Location</p>
+            <h1>Localização</h1>
+            <p className='text-gray-500'>Sua localização</p>
           </div>
           {chooselocation &&(
             <>
@@ -66,7 +66,7 @@ const SearchBar = () => {
           </div>
           <div>
             <h1>Data da retirada</h1>
-            <p className='text-gray-500'>{pickSelectedDate}</p>
+            <p className='text-gray-500'>data de retirada</p>
           </div>
         </div>
         <div className="search-bar-item flex gap-4">
@@ -80,7 +80,7 @@ const SearchBar = () => {
           )}
           <div>
             <h1>Data de retorno</h1>
-            <p className='text-gray-500'>{returnSelectedDate}</p>
+            <p className='text-gray-500'>data de retorno</p>
           </div>
         </div>
         <Button Children='Search' />
