@@ -85,7 +85,6 @@ const MeusCarros = () => {
                     <button onClick={() => navigate('/DashboardLooged/Meuscarros/editar')} className='bg-blue-600 text-white rounded p-3'>Editar</button>
                     <button onClick={() => Deletecar(car.id)} className='bg-red-600 text-white rounded p-3'>Remover</button>
                   </div>
-                  <p>{car.id}</p>
                 </div>
               ))
             ) : (
