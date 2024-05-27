@@ -39,7 +39,7 @@ const MeusCarros = () => {
                 console.error("Erro ao deletar car", error)
             })
 
-            window.location.reload()
+            window.location.href="/DashboardLooged/Meuscarros"
     }
 
     

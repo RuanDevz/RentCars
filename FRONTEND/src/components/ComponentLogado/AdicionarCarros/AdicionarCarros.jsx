@@ -53,7 +53,7 @@ const AdicionarCarros = () => {
         console.log(response.data)
         setMsg(response.data.msg)
         setTimeout(() => {
-            window.location.reload()
+            window.location.href="/DashboardLooged/Adicionarcarros"
         }, 3000);
         
     } catch (error) {
