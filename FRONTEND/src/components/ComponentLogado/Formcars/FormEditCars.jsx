@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Context from '../../../useContext/Context';
 import Input from '../../Input/Input';
@@ -7,7 +7,9 @@ import Button from '../../Button/Button';
 
 const FormEditCars = () => {
   const { setMycars, mycars, myid, carData, setCarData } = useContext(Context);
-  const { carId } = useParams();
+  const navigate = useNavigate()
+
+  const [carId, setCardid] = useState('')
 
   const [namecar, setNamecar] = useState('');
   const [passagers, setPassagers] = useState('');
@@ -29,8 +31,11 @@ const FormEditCars = () => {
     }
   }, [carId, myid, setCarData]);
 
+  console.log(myid, carId)
+
   useEffect(() => {
     if (carData) {
+      setCardid(carData.id)
       setNamecar(carData.name);
       setPassagers(carData.passageiros);
       setMarcha(carData.marcha);
@@ -40,6 +45,7 @@ const FormEditCars = () => {
       setImagecar(carData.img);
     }
   }, [carData]);
+
 
   const Updatecar = async () => {
     if (!myid || !carId) {
@@ -60,9 +66,12 @@ const FormEditCars = () => {
     };
 
     try {
-      const response = await axios.put(`https://rent-cars-jdua.vercel.app/user/${myid}/cars/${carId}`, updatedData);
+      const response = await axios.put(`https://rent-cars-jdua.vercel.app/car/${myid}/cars/${carId}`, updatedData);
+      setTimeout(() => {
+        navigate('/DashboardLooged/Meuscarros')
+        window.location.reload()
+      }, 3000);
       console.log(response.data.msg);
-      setMycars(mycars.map(car => car.id === carId ? response.data.updatedCar : car));
     } catch (error) {
       console.error("Erro ao atualizar carro", error);
     }

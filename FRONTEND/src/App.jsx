@@ -9,7 +9,6 @@ import Context from './useContext/Context';
 import AdicionarCarros from './components/ComponentLogado/AdicionarCarros/AdicionarCarros';
 import Meuscarros from './components/ComponentLogado/MeusCarros/MeusCarros';
 import Editar from './pages/Editar/Editar';
-import FormEditCars from './components/ComponentLogado/Formcars/FormEditCars';
 
 const App = () => {
   const [showMessage, setShowMessage] = useState(false);
@@ -58,7 +57,7 @@ const App = () => {
             <Route path='/DashboardLooged' element={<DashboardLooged />} />
             <Route path='/DashboardLooged/Adicionarcarros' element={<AdicionarCarros />} />
             <Route path='/DashboardLooged/Meuscarros' element={<Meuscarros />} />
-            <Route path='/DashboardLooged/Meuscarros/editar' element={<Editar />} />
+            <Route path='/Editar' element={<Editar />} />
           </Routes>
         </div>
       </Router>
