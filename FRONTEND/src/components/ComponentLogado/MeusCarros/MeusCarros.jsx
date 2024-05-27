@@ -8,9 +8,12 @@ import Portas from './Images/Portas.png'
 import Marcha from './Images/Marcha.png'
 import Arcondicionado from './Images/Arcondicionado.png'
 import LoadingComponent from '../../LoadingComponent/LoadingComponent'
+import { useNavigate } from 'react-router-dom'
 
 const MeusCarros = () => {
-    const { myid, setLoading, loading,mycars, setMycars } = useContext(Context)
+  
+  const navigate = useNavigate()
+  const { myid, setLoading, loading,mycars, setMycars } = useContext(Context)
 
     useEffect(() => {
         setLoading(true)
@@ -26,7 +29,7 @@ const MeusCarros = () => {
     }, [myid, setLoading]) 
 
     const Deletecar = async (carId) => {
-        await axios.delete(`https://rent-cars-three.vercel.app/user/${myid}/cars/${carId}`)
+        await axios.delete(`https://rent-cars-jdua.vercel.app/cars/${myid}/cars/${carId}`)
             .then((response) => {
                 console.log(response.data.msg)
                 setMycars(mycars.filter(car => car.id !== carId))
@@ -88,7 +91,6 @@ const MeusCarros = () => {
                                         <button onClick={() => navigate('/DashboardLooged/Meuscarros/editar')} className='bg-blue-600 text-white rounded p-3'>Editar</button>
                                         <button onClick={Deletecar} className='bg-red-600 text-white rounded p-3'>Remover</button>
                                     </div>
-                                    <p>{car.id}</p>
                                 </div>
                             ))
                         ) : (
