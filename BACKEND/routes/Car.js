@@ -8,6 +8,12 @@ Router.get('/', async (req,res) =>{
     res.json(getallcars)
 })
 
+Router.get('/:id', async (req,res) =>{
+    const {id} = req.params
+    const getcarbyid = await Car.findByPk(id)
+    res.json(getcarbyid)
+})
+
 
 
 Router.post('/',async  (req,res) =>{
