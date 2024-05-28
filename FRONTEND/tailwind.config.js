@@ -9,6 +9,9 @@ export default {
       margin:{
         'custom': '25rem',
       },
+      width:{
+        "car-width": '800px'
+      },
       colors:{
         primary: "#1572D3",
         hovercolor: "#166bc4",

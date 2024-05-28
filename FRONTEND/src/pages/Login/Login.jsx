@@ -48,15 +48,16 @@ const Login = () => {
     
 
     try {
+      setLoading(true)
       const response = await axios.post('https://rent-cars-jdua.vercel.app/user/auth', {
         username: username,
         password: password
       });
+      setLoading(false)
       console.log(response.data);
       setAccessToken(response.data.accessToken);
       setUserdata(response.data.user.username);
       setmyId(response.data.user.id);
-      setLoading(false);
       navigate('/DashboardLooged');
     } catch (error) {
       setError("Credenciais Invalidas!");
@@ -74,8 +75,9 @@ const Login = () => {
   return (
     <div>
       {Loading ? (
-        <div className='flex justify-center items-center h-screen	'>
+        <div className='flex justify-center items-center flex-col h-screen	'>
           <LoadingComponent/>
+          <p className='text-center text-primary font-primary font-medium text-2xl mt-4'>Aguarde...</p>
         </div>
       ) : (
         <>

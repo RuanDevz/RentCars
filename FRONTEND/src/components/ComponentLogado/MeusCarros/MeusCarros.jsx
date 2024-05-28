@@ -95,8 +95,8 @@ const MeusCarros = () => {
                     <p><strong>R$ {car.price}</strong> <span className='text-gray-500'>/dia</span></p>
                   </div>
                   <div className='flex justify-around items-center mt-6 font-primary'>
-                    <button onClick={() => Updatedcar(car.id)} className='bg-blue-600 text-white rounded p-3'>Editar</button>
-                    <button onClick={() => Deletecar(car.id)} className='bg-red-600 text-white rounded p-3'>Remover</button>
+                    <button onClick={() => Updatedcar(car.id)} className='bg-blue-600 text-white rounded p-3 hover:bg-blue-700'>Editar</button>
+                    <button onClick={() => Deletecar(car.id)} className='bg-red-600 text-white rounded p-3 hover:bg-red-700'>Remover</button>
                   </div>
                 </div>
               ))

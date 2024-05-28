@@ -11,6 +11,7 @@ import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 import axios from 'axios'
 import Popup from '../../components/Popup/Popup';
+import './Editar.css'
 
 const Editar = () => {
     const { setMycars, mycars, myid, carData, setCarData, showMessage, setShowMessage, setMsg, msg, setError, error } = useContext(Context);
@@ -101,14 +102,14 @@ const Editar = () => {
             <div className='flex justify-center mx-auto mt-10 p-5 lg:mt-20 whitespace-nowrap text-primary lg:text-primary font-medium py-3 px-14 bg-blue-100 rounded mb-10 max-w-64'>
                 <h1 className='text-2xl text-primary'>Editar seu carro</h1>
             </div>
-            <main className='flex justify-between flex-row-reverse'>
+            <main className='flex justify-between flex-col items-center lg:flex-row-reverse'>
                 <section>
-                <img data-aos="zoom-in" className='mt-28' src={car} alt="Car" />
+                <img className='w-car-width' src={car} alt="Car" />
                 {showMessage && <Popup/>}
                 </section>
-                <section className='ml-20 absolute top-0 left-0 mt-32'>
+                <section className='ml-20lg:relative top-0 left-0 mt-32'>
                 <div>
-      <form className='border-4 border-primary p-2 rounded font-primary mb-28' onSubmit={handleSubmit}>
+      <form className='border-4 border-primary p-2 rounded font-primary relative ml-0 mt-0 lg:absolute top-0 lg:mt-32 lg:ml-32' onSubmit={handleSubmit}>
         <p className='py-5 text-base'>Qual é o nome do seu carro</p>
         <div data-aos='fade-left'>
         </div>
