@@ -6,11 +6,22 @@ import Input from '../../Input/Input';
 import Button from '../../Button/Button';
 import Popup from '../../Popup/Popup';
 
-const FormEditCars = () => {
-  const { setMycars, mycars, myid, carData, setCarData, showMessage, setShowMessage, setMsg, msg, setError, error } = useContext(Context);
-  const navigate = useNavigate()
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
-  const [carId, setCardid] = useState('')
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return isMobile;
+};
+
+const FormEditCars = () => {
+  const { setCarData, showMessage, setShowMessage, setMsg, setError } = useContext(Context);
+  const { carId } = useParams();
+  const navigate = useNavigate();
 
   const [namecar, setNamecar] = useState('');
   const [passagers, setPassagers] = useState('');
@@ -19,12 +30,20 @@ const FormEditCars = () => {
   const [doors, setDoors] = useState('');
   const [price, setPrice] = useState('');
   const [imagecar, setImagecar] = useState('');
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     if (carId) {
       axios.get(`https://rent-cars-jdua.vercel.app/car/${myid}/cars/${carId}`)
         .then((response) => {
           setCarData(response.data);
+          setNamecar(response.data.name);
+          setPassagers(response.data.passageiros);
+          setMarcha(response.data.marcha);
+          setAirconditioning(response.data.arcondicionado);
+          setDoors(response.data.portas);
+          setPrice(response.data.price);
+          setImagecar(response.data.img);
         })
         .catch((error) => {
           console.error("Erro ao buscar dados do carro", error);
@@ -32,26 +51,14 @@ const FormEditCars = () => {
     }
   }, [carId, myid, setCarData]);
 
-  console.log(myid, carId)
-
-  useEffect(() => {
-    if (carData) {
-      setCardid(carData.id)
-      setNamecar(carData.name);
-      setPassagers(carData.passageiros);
-      setMarcha(carData.marcha);
-      setAirconditioning(carData.arcondicionado);
-      setDoors(carData.portas);
-      setPrice(carData.price);
-      setImagecar(carData.img);
-    }
-  }, [carData]);
-
-
   const Updatecar = async () => {
     if (!myid || !carId) {
       console.error("ID do usuário ou ID do carro não definidos");
       return;
+    }
+
+    if (isMobile) {
+      window.scrollTo({ top: 0 });
     }
 
     const updatedData = {
@@ -68,17 +75,16 @@ const FormEditCars = () => {
 
     try {
       const response = await axios.put(`https://rent-cars-jdua.vercel.app/car/${myid}/cars/${carId}`, updatedData);
-      setShowMessage(true)
-      setMsg('Carro atualizado com sucesso!')
+      setShowMessage(true);
+      setMsg('Carro atualizado com sucesso!');
       setTimeout(() => {
-        navigate('/DashboardLooged/Meuscarros')
-        window.location.reload()
+        navigate('/DashboardLooged/Meuscarros');
       }, 3000);
       console.log(response.data.msg);
     } catch (error) {
       console.error("Erro ao atualizar carro", error);
-      setShowMessage(true)
-      setMsg('Erro ao atualizar carro')
+      setShowMessage(true);
+      setMsg('Erro ao atualizar carro');
     }
   };
 
@@ -92,7 +98,7 @@ const FormEditCars = () => {
       <form className='border-4 border-primary p-2 rounded font-primary mb-28' onSubmit={handleSubmit}>
         <p className='py-5 text-base'>Qual é o nome do seu carro</p>
         <div data-aos='fade-left'>
-        {showMessage && <Popup/>}
+          {showMessage && <Popup />}
         </div>
         <Input value={namecar} onChange={(e) => setNamecar(e.target.value)} maxLength='20' placeholder='Marca do Carro' />
         <div>
@@ -139,7 +145,7 @@ const FormEditCars = () => {
           <Input value={imagecar} onChange={(e) => setImagecar(e.target.value)} placeholder='URL da imagem' />
         </div>
         <div className='flex justify-center items-center mt-10 mb-7'>
-          <Button onClick={handleSubmit} Children='Salvar' type="submit"></Button>
+          <Button type="submit" Children='Salvar' />
         </div>
       </form>
     </div>

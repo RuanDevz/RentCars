@@ -18,7 +18,7 @@ const Popup = () => {
         }
       }, [showMessage]);
   return (
-    <div>
+    <div className=''>
             {showMessage && (
           <div
             data-aos="fade-left"

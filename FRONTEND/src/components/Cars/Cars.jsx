@@ -39,6 +39,7 @@ const Cars = () => {
             if (!accessToken || accessToken.trim() === '') {
                 setError("Você precisa estar logado para alugar");
                 setShowMessage(true);
+                window.scrollTo({ top: 3300 });
                 return;
             }
 
@@ -55,9 +56,6 @@ const Cars = () => {
             const carResponse = await axios.get(`https://rent-cars-jdua.vercel.app/car/${carId}`);
             setCardetails(carResponse.data);
             setGetidcar(carResponse.data.id)
-            
-
-
             
             navigate(`/Cardetails/${carId}`);
 
@@ -84,12 +82,12 @@ const Cars = () => {
                                 <span>{car.nota}</span>
                                 <p className='text-xs text-gray-500'>({car.reviews} reviews)</p>
                             </div>
-                            <div className='flex gap-2 flex-wrap items-end gap-5 border-b border-gray-300'>
-                                <div className='flex py-1'>
+                            <div className='grid grid-cols-2'>
+                                <div className='flex py-1 pb-6'>
                                     <img src={Passageiro} alt="Passageiro" />
                                     <p className='text-xs text-gray-500'>{car.passageiros} Passagers</p>
                                 </div>
-                                <div className='flex gap-2 py-1'>
+                                <div className='flex gap-2 py-1 pb-6'>
                                     <img src={Marcha} alt="Marcha" />
                                     <p className='text-xs text-gray-500'>{car.marcha}</p>
                                 </div>
