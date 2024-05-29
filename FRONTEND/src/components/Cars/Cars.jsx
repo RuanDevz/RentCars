@@ -1,15 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Jaguar from './Images/Jaguar.png';
-import Audi from './Images/Audi.png';
-import BMW from './Images/BMW.png';
-import Lamborghini from './Images/Lamborghini.png';
 import Passageiro from './Images/user.png';
 import Marcha from './Images/Marcha.png';
 import Arcondicionado from './Images/Frozen.png';
 import Portas from './Images/Portas.png';
 import Star from './Images/Star.png';
 import Button from '../Button/Button';
-import Arrow from './Images/Arrow.png';
 import axios from 'axios';
 import Context from '../../useContext/Context';
 import Popup from '../Popup/Popup';
