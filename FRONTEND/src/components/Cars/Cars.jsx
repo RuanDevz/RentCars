@@ -9,24 +9,27 @@ import Arcondicionado from './Images/Frozen.png';
 import Portas from './Images/Portas.png';
 import Star from './Images/Star.png';
 import Button from '../Button/Button';
-import Arrow from './Images/Arrow.png'
-import axios from 'axios'
+import Arrow from './Images/Arrow.png';
+import axios from 'axios';
 import Context from '../../useContext/Context';
 import Popup from '../Popup/Popup';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const Cars = () => {
 
-    const {accessToken, userdata, setError, error, setShowMessage,showMessage} = useContext(Context)
+    const navigate = useNavigate();
+    const { accessToken, setError, setShowMessage, showMessage, setCarid } = useContext(Context);
+    const { cars, setCars } = useContext(Context);
+    let {carId} = useParams()
 
-    const [userlogged, setUserlogged] = useState(false)
+    const [getidcar, setGetidcar] = useState(null)
 
-    /* USAR PARA PRODUÇÃO IGNORAR ISSO
-    const {cars, setCars} = useContext(Context)
+    const {setCardetails,cardetails} = useContext(Context)
 
-    useEffect(() =>{
+    useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/car');
+                const response = await axios.get('https://rent-cars-jdua.vercel.app/car');
                 setCars(response.data);
             } catch (error) {
                 console.error('Erro ao buscar dados:', error);
@@ -34,80 +37,39 @@ const Cars = () => {
         };
 
         fetchData();
-    }, []);
-    */
+    }, [setCars]);
 
-    const cars = [
-        {
-            img: Lamborghini,
-            name: "Lamborghini Huracan",
-            nota: "5.0",
-            reviews: "305",
-            passageiros: "2",
-            marcha: "Auto",
-            arcondicionado: "Air Conditioning",
-            portas: "2",
-            price: "4,500"
-        },
-        {
-            img: BMW,
-            name: "BMW 5 Series",
-            nota: "4.7",
-            reviews: "2150",
-            passageiros: "5",
-            marcha: "Auto",
-            arcondicionado: "Air Conditioning",
-            portas: "4",
-            price: "1,700"
-        },
-        {
-            img: Jaguar,
-            name: "Jaguar XE L P250",
-            nota: "4.5",
-            reviews: "3200",
-            passageiros: "5",
-            marcha: "Manual",
-            arcondicionado: "Ar Condicionado",
-            portas: "4",
-            price: "2,500"
-        },
-        {
-            img: Audi,
-            name: "Audi A4",
-            nota: "4.8",
-            reviews: "150",
-            passageiros: "5",
-            marcha: "Automatic",
-            arcondicionado: "Air Conditioning",
-            portas: "4",
-            price: "3,200"
-        }
-    ];
-
-    const RentCar = async () => {
+    const rentCar = async (carId) => {
         try {
             if (!accessToken || accessToken.trim() === '') {
-                setError("Você precisa estar logado para alugar")
-                setShowMessage(true)
+                setError("Você precisa estar logado para alugar");
+                setShowMessage(true);
                 return;
             }
-    
+
             const config = {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
                 }
             };
-    
+
             const response = await axios.get('https://rent-cars-jdua.vercel.app/user/dashboard/user', config);
             console.log("Usuário está logado. Pode alugar.");
+
+            
+            const carResponse = await axios.get(`https://rent-cars-jdua.vercel.app/car/${carId}`);
+            setCardetails(carResponse.data);
+            setGetidcar(carResponse.data.id)
+            
+
+
+            
+            navigate(`/Cardetails/${carId}`);
+
         } catch (err) {
             console.log("Ocorreu um erro ao verificar a autenticação:", err);
         }
     };
-
-    useEffect(() => {
-        RentCar()
-    }, [accessToken]);
 
     return (
         <div>
@@ -117,7 +79,7 @@ const Cars = () => {
                     <p className='text-primary font-medium py-3 px-10 bg-blue-100 rounded mb-10 w-64 text-center whitespace-nowrap'>POPULAR RENTAL DEALS</p>
                     <h1 className='text-center lg:font-primary font-medium text-4xl max-w-xl pb-20'>Most popular cars rental deals</h1>
                 </section>
-                <section className='flex flex-col justify-center items-center lg:flex lg:justify-between lg:flex-row max-w-6xl mx-auto pb-52'>
+                <section className='flex flex-col justify-center items-center lg:flex lg:justify-between lg:flex-row flex-wrap max-w-6xl mx-auto pb-52'>
                     {cars.map((car, index) => (
                         <div className='max-w-64 font-primary rounded-lg shadow-2xl p-4 mb-4' key={index}>
                             <img className='pb-5 w-80' src={car.img} alt={car.name} />
@@ -150,7 +112,7 @@ const Cars = () => {
                                 <p><strong>R${car.price}</strong> <span className='text-gray-500'>/day</span></p>
                             </div>
                             <div className='flex justify-center items-center mt-6'>
-                                <Button onClick={RentCar} Children='Rent Now'/>
+                                <Button onClick={() => rentCar(car.id)} Children='Rent Now' />
                             </div>
                         </div>
                     ))}

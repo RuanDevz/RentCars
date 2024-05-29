@@ -9,6 +9,7 @@ import Context from './useContext/Context';
 import AdicionarCarros from './components/ComponentLogado/AdicionarCarros/AdicionarCarros';
 import Meuscarros from './components/ComponentLogado/MeusCarros/MeusCarros';
 import Editar from './pages/Editar/Editar';
+import Cardetails from './pages/Cardetails/Cardetails';
 
 const App = () => {
   const [showMessage, setShowMessage] = useState(false);
@@ -23,6 +24,7 @@ const App = () => {
   const [mycars, setMycars] = useState([]);
   const [carId, setCarId] = useState('');
   const [carData, setCarData] = useState(null)
+  const [cardetails, setCardetails] = useState([])
 
   useEffect(() => {
     const isMobile = window.innerWidth <= 768;
@@ -46,7 +48,8 @@ const App = () => {
       myid, setmyId,
       mycars, setMycars,
       carId, setCarId,
-      carData, setCarData
+      carData, setCarData,
+      cardetails, setCardetails
     }}>
       <Router>
         <div className='overflow-x-hidden'>
@@ -58,6 +61,8 @@ const App = () => {
             <Route path='/DashboardLooged/Adicionarcarros' element={<AdicionarCarros />} />
             <Route path='/DashboardLooged/Meuscarros' element={<Meuscarros />} />
             <Route path='/Editar' element={<Editar />} />
+            <Route path='/Cardetails/:carId' element={<Cardetails />} />
+
           </Routes>
         </div>
       </Router>
