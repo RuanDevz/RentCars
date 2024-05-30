@@ -9,6 +9,8 @@ import Marcha from './Images/Marcha.png';
 import Arcondicionado from './Images/Arcondicionado.png';
 import LoadingComponent from '../../LoadingComponent/LoadingComponent';
 import { useNavigate } from 'react-router-dom';
+import DefaultTitle from '../../DefaultTitle/DefaultTitle';
+import DefaultTitleNotFound from '../../DefaultTitle/DefaultTitleNotFound';
 
 const MeusCarros = () => {
   
@@ -56,9 +58,7 @@ const MeusCarros = () => {
       <HeaderLogged />
       <main>
         <section className='flex justify-center items-center'>
-          <p className='text-primary font-medium py-3 mt-10 px-10 bg-blue-100 rounded mb-10 w-64 text-center whitespace-nowrap'>
-            MEUS CARROS
-          </p>
+          <DefaultTitle>Meus carros</DefaultTitle>
         </section>
         <section className='flex justify-around gap-10 mx-auto flex-wrap max-w-screen-xl'>
           {loading ? (
@@ -72,7 +72,7 @@ const MeusCarros = () => {
                 <div key={car.id} className='max-w-64 font-primary rounded-lg shadow-2xl p-4 mb-4'>
                   <img className='pb-5 w-80' src={car.img} alt={car.name} />
                   <h1 className='font-medium text-lg'>{car.name}</h1>
-                  <div className='flex gap-2 flex-wrap items-end gap-5 border-b border-gray-300'>
+                  <div className='grid grid-cols-2 gap-'>
                     <div className='flex py-1'>
                       <img src={Passageiro} alt="Passageiro" />
                       <p className='text-xs text-gray-500'>{car.passageiros} Passageiros</p>
@@ -101,9 +101,7 @@ const MeusCarros = () => {
                 </div>
               ))
             ) : (
-              <div className='bg-red-100 my-20'>
-                <p className='text-2xl font-bold text-center text-red-600 py-5 px-5 rounded-xl'>Nenhum carro encontrado.</p>
-              </div>
+              <DefaultTitleNotFound>Nenhum carro encontrado</DefaultTitleNotFound>
             )
           )}
         </section>

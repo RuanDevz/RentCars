@@ -2,11 +2,12 @@ import React from 'react'
 import tick from './Images/tick.png'
 import calendary from './Images/calendar.png'
 import car from './Images/car.png'
+import './Work.css'
 
 const Work = () => {
   return (
     <div>
-        <div data-aos="fade-down" className='flex justify-center items-center flex-col mt-20'>
+        <div data-aos="fade-down" className='flex justify-center items-center flex-col mt-m-top-custom'>
         <h1 className='text-primary font-medium py-3 px-10 bg-blue-100 rounded mb-10'>HOW IT WORK</h1>
         <p className='text-2xl text-center lg:font-primary font-medium lg:text-4xl pb-28'>Rent with following 3 working steps</p>
         <div className='flex flex-col gap-1 lg:flex-row lg:justify-around lg:items-center text-center lg:gap-48'>

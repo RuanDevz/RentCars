@@ -6,6 +6,7 @@ import suport from './Images/24suport.png';
 import message from './Images/message.png';
 import backgroundaudi from './Images/BackgroundAudi.png'
 import CarAudi from '../CarAudi/CarAudi';
+import DefaultTitleDashboard from '../DefaultTitle/DefaultTitleDashboard';
 
 const Details = () => {
     const vantagens = [
@@ -36,7 +37,7 @@ const Details = () => {
             <main data-aos="zoom-in" className='lg:flex lg:justify-between mt-72'>
                 <CarAudi/>
                 <section className='flex flex-col justify-center items-center lg:mr-44'>
-                    <p className='mt-32 whitespace-nowrap text-primary lg:text-primary font-medium py-3 px-10 bg-blue-100 rounded mb-10 max-w-56'>WHY CHOOSE US</p>
+                    <DefaultTitleDashboard>WHY CHOOSE US</DefaultTitleDashboard>
                     <h1 className='text-center lg:font-primary font-medium text-4xl max-w-xl'>We offer the best experience with our rental deals</h1>
                     <div>
                         {vantagens.map((vantagem, index) => (

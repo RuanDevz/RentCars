@@ -25,9 +25,6 @@ const Home = () => {
                 <img data-aos="zoom-in" className='absolute top-60 right-0 w-car' src={car} alt="car" />
             </section>
         </main>
-        <div>
-            <SearchBar />
-        </div>
     </div>
   )
 }

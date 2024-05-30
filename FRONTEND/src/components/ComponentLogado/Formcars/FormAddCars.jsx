@@ -106,8 +106,8 @@ const FormAddCars = () => {
           <p className='py-5 text-base'>Tem Ar-condicionado?</p>
           <select className='bg-blue-400 p-1 rounded' value={Airconditioning} onChange={(e) => setAirconditioning(e.target.value)}>
             <option disabled value="">Seleciona uma opção</option>
-            <option value="Sim">Sim</option>
-            <option value="Não">Não</option>
+            <option value="">Sim</option>
+            <option value="Sem Arcondicionado">Não</option>
           </select>
         </div>
         <div>

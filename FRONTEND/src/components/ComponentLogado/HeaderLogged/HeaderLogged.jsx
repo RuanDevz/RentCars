@@ -70,10 +70,12 @@ const HeaderLogged = () => {
                 <FaCar className='text-4xl text-primary cursor-pointer'/>
               </li>
               </Link>
+              <Link to='/DashboardLooged/Carrosalugados'>
               <li className='flex justify-center items-center flex-row-reverse gap-7 ml-3 relative left-0 lg:hidden'>
                 <p className='hover:text-primary cursor-pointer font-medium'>Carros alugados</p>
                 <FaCarSide className='text-4xl text-primary cursor-pointer'/>
               </li>
+              </Link>
               <li onClick={exit} className='flex justify-center items-center flex-row-reverse gap-7 ml-3 relative left-0 lg:hidden'>
                 <p className='hover:text-primary cursor-pointer font-medium'>Sair</p>
                 <IoExitOutline className='text-4xl text-primary cursor-pointer'/>
@@ -107,10 +109,12 @@ const HeaderLogged = () => {
                 <FaCar className='text-4xl text-primary cursor-pointer'/>
               </div>
               </Link>
+              <Link to='/DashboardLooged/Carrosalugados'>
               <div className='flex justify-center items-center flex-row-reverse gap-7 ml-3 relative left-0'>
               <p className='hover:text-primary cursor-pointer font-medium whitespace-nowrap'>Carros alugados</p>
                 <FaCarSide className='text-4xl text-primary cursor-pointer'/>
               </div>
+              </Link>
                 <div onClick={exit} className='flex justify-center items-center flex-row-reverse gap-7 ml-3 relative left-0 '>
                 <p className='hover:text-primary cursor-pointer font-medium whitespace-nowrap'>Sair</p>
                 <IoExitOutline className='text-4xl text-primary cursor-pointer'/>

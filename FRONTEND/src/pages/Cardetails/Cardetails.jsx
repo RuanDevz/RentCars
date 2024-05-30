@@ -5,21 +5,20 @@ import LoadingComponent from '../../components/LoadingComponent/LoadingComponent
 import Context from '../../useContext/Context';
 import HeaderLogged from '../../components/ComponentLogado/HeaderLogged/HeaderLogged';
 import Footer from '../../components/Footer/Footer';
-import Arcondicionado from './Images/Frozen.png'
-import Portas from './Images/Portas.png'
-import Marcha from './Images/Marcha.png'
-import passageiros from './Images/user.png'
+import Arcondicionado from './Images/Frozen.png';
+import Portas from './Images/Portas.png';
+import Marcha from './Images/Marcha.png';
+import passageiros from './Images/user.png';
 import { FaArrowLeft } from "react-icons/fa";
-import { FaRegUser } from "react-icons/fa";
-
-
+import SearchBarOptions from '../../components/SearchBar/SearchBarOptions';
 
 const Cardetails = () => {
     const { carId } = useParams();
-    const [cardetails, setCardetails] = useState(null);
-    const { loading, setLoading } = useContext(Context);
-    const navigate = useNavigate()
-    const [zoom, setZoom] = useState(0.9)
+    
+    const { loading, setLoading,cardetails,setCardetails } = useContext(Context);
+    const navigate = useNavigate();
+    const [zoom, setZoom] = useState(0.9);
+    const [searchbar, setSearchbar] = useState(false);
 
     useEffect(() => {
         setLoading(true);
@@ -46,43 +45,62 @@ const Cardetails = () => {
         );
     }
 
+    const toggleSearchBar = () => {
+        setSearchbar(!searchbar);
+    }
+
     return (
-        <div style={{zoom: zoom}}>
+        <div style={{ zoom: zoom }}>
             <HeaderLogged />
             <main className='lg:flex max-w-screen-2xl mx-auto py-28 shadow-lg bg-blue-50 mt-10'>
-              <FaArrowLeft onClick={() => navigate('/DashboardLooged')} className='text-4xl text-primary absolute left-0 top-0 mt-32 cursor-pointer ml-10 mb-96'/>
+                <FaArrowLeft onClick={() => navigate('/DashboardLooged')} className='text-4xl text-primary absolute left-0 top-0 mt-32 cursor-pointer ml-10 mb-96' />
                 <section className=''>
                     <img className='w-car-width' src={cardetails.img} alt={cardetails.name} />
                 </section>
                 <section className='max-w-3xl mx-auto lg:max-w-screen-sm flex flex-col justify-start items-center'>
                     <div className='pb-10'>
-                      <h1 className='text-2xl mt-10 lg:text-2xl lg:mt-0 font-primary font-medium text-primary bg-blue-200 p-5 rounded'>{cardetails.name}</h1>
+                        <h1 className='text-2xl mt-10 lg:text-2xl lg:mt-0 font-primary font-medium text-primary bg-blue-200 p-5 rounded'>{cardetails.name}</h1>
                     </div>
                     <div className='text-center mr-20 lg:flex justify-center items-center lg:text-justify mx-auto ml-20 mt-5'>
-                      <p className='text-5xl text-segundary'>(Reviews: 30123)</p>
+                        <p className='text-5xl text-segundary'>(Reviews: 30123)</p>
                     </div>
                     <div className='text-2xl'>
-                      <div className='lg:grid grid-cols-2 grid-flow-row mt-10'>
-                        <div className='  w-48 flex justify-around mx-20 my-6 bg-blue-200 p-5 rounded'>
-                          <img className='w-6' src={Arcondicionado} alt="Arcondicionado" />
-                          <p>{cardetails.arcondicionado}</p>
+                        <div className='lg:grid grid-cols-2 grid-flow-row mt-10'>
+                            <div className='w-48 flex justify-around mx-20 my-6 bg-blue-200 p-5 rounded'>
+                                <img className='w-6' src={Arcondicionado} alt="Arcondicionado" />
+                                <p>{cardetails.arcondicionado}</p>
+                            </div>
+                            <div className='w-48 flex justify-around mx-20 my-6 bg-blue-200 p-5 rounded'>
+                                <img className='w-6' src={Portas} alt="Portas" />
+                                <p>{cardetails.portas}</p>
+                            </div>
+                            <div className='w-48 flex justify-around mx-20 my-6 bg-blue-200 p-5 rounded'>
+                                <img className='w-6' src={passageiros} alt="passageiros" />
+                                <p>{cardetails.passageiros}</p>
+                            </div>
+                            <div className='w-48 flex justify-around mx-20 my-6 bg-blue-200 p-5 rounded'>
+                                <img className='w-6' src={Marcha} alt="Marcha" />
+                                <p>{cardetails.marcha}</p>
+                            </div>
                         </div>
-                        <div className='  w-48 flex justify-around mx-20 my-6 bg-blue-200 p-5 rounded'>
-                          <img className='w-6' src={Portas} alt="Portas" />
-                          <p>{cardetails.portas}</p>
+                        <div className='flex justify-center mt-10 text-3xl font-medium border-4 border-segundary rounded py-3'>
+                            <p>Preço da diária: R$ {cardetails.price}</p>
                         </div>
-                        <div className='  w-48 flex justify-around mx-20 my-6 bg-blue-200 p-5 rounded'>
-                          <img className='w-6' src={passageiros} alt="passageiros" />
-                          <p>{cardetails.passageiros}</p>
+                        <div className='flex justify-center'>
+                            <button onClick={toggleSearchBar} className='py-5 px-32 rounded text-white font-primary bg-primary font-medium mt-20 hover:bg-hovercolor'>Rent Now</button>
                         </div>
-                        <div className='  w-48 flex justify-around mx-20 my-6 bg-blue-200 p-5 rounded'>
-                          <img className='w-6' src={Marcha} alt="Marcha" />
-                          <p>{cardetails.marcha}</p>
-                        </div>
-                      </div>
-                      <div className='flex justify-center'>
-                      <button className='py-5 px-32 rounded text-white font-primary bg-primary font-medium mt-20 hover:bg-hovercolor'>Rent Now</button>
-                      </div>
+                        {searchbar && (
+                            <div className='fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50'>
+                                <div className='bg-white p-10 rounded-lg shadow-lg flex items-center justify-center'>
+                                    <SearchBarOptions />
+                                    <div className=''>
+                                    <button onClick={toggleSearchBar} className=' mt-4 mb-96 text-white bg-red-500 px-4 py-2 rounded hover:bg-red-600'>
+                                        Close
+                                    </button>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </section>
             </main>

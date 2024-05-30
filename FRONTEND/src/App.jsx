@@ -10,6 +10,7 @@ import AdicionarCarros from './components/ComponentLogado/AdicionarCarros/Adicio
 import Meuscarros from './components/ComponentLogado/MeusCarros/MeusCarros';
 import Editar from './pages/Editar/Editar';
 import Cardetails from './pages/Cardetails/Cardetails';
+import CarrosAlugados from './pages/CarrosAlugados/CarrosAlugados';
 
 const App = () => {
   const [showMessage, setShowMessage] = useState(false);
@@ -24,7 +25,8 @@ const App = () => {
   const [mycars, setMycars] = useState([]);
   const [carId, setCarId] = useState('');
   const [carData, setCarData] = useState(null)
-  const [cardetails, setCardetails] = useState([])
+  const [cardetails, setCardetails] = useState([]);
+  const [rentcars, setRentcars] = useState([])
 
   useEffect(() => {
     const isMobile = window.innerWidth <= 768;
@@ -49,7 +51,8 @@ const App = () => {
       mycars, setMycars,
       carId, setCarId,
       carData, setCarData,
-      cardetails, setCardetails
+      cardetails, setCardetails,
+      rentcars, setRentcars
     }}>
       <Router>
         <div className='overflow-x-hidden'>
@@ -60,6 +63,7 @@ const App = () => {
             <Route path='/DashboardLooged' element={<DashboardLooged />} />
             <Route path='/DashboardLooged/Adicionarcarros' element={<AdicionarCarros />} />
             <Route path='/DashboardLooged/Meuscarros' element={<Meuscarros />} />
+            <Route path='/DashboardLooged/Carrosalugados' element={<CarrosAlugados/>}/>
             <Route path='/Editar' element={<Editar />} />
             <Route path='/Cardetails/:carId' element={<Cardetails />} />
 

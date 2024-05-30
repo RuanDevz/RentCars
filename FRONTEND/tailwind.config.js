@@ -8,6 +8,8 @@ export default {
     extend: {
       margin:{
         'custom': '25rem',
+        'm-top-custom': '900px',
+        'error': '450px'
       },
       width:{
         "car-width": '800px'
