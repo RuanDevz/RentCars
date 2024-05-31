@@ -73,6 +73,13 @@ const SearchBarOptions = () => {
 
     const today = getTodayDate();
 
+        const time = new Date()
+        const hours = time.getHours()
+        const minutes = time.getMinutes()
+        const seconds =time.getSeconds()
+
+        const formatedTime = `${hours}h ${minutes}m ${seconds}s`
+
     return (
         <div className='search-bar-container mb-32 mt-32 z-50 whitespace-nowrap'>
             <div className='flex flex-col justify-center gap-36 text-center lg:max-w-7xl lg:flex-row items-center lg:mx-auto rounded top p-5'>

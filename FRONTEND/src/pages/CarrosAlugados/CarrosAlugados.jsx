@@ -17,7 +17,11 @@ const CarrosAlugados = ({}) => {
             <div className="carros-alugados-list">
                 {rentcars.length > 0 ? (
                     rentcars.map((car, index) => (
+                        <>
+                        <div className='flex justify-center'>
                         <CarComponent car={car} index={index}/>
+                        </div>
+                        </>
                     ))
                 ) : (
                     <>

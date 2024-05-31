@@ -27,6 +27,7 @@ const App = () => {
   const [carData, setCarData] = useState(null)
   const [cardetails, setCardetails] = useState([]);
   const [rentcars, setRentcars] = useState([])
+  const [timenow, setTimenow] = useState('');
 
   useEffect(() => {
     const isMobile = window.innerWidth <= 768;
@@ -52,7 +53,8 @@ const App = () => {
       carId, setCarId,
       carData, setCarData,
       cardetails, setCardetails,
-      rentcars, setRentcars
+      rentcars, setRentcars,
+      timenow, setTimenow
     }}>
       <Router>
         <div className='overflow-x-hidden'>

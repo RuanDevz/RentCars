@@ -57,7 +57,7 @@ const FormAddCars = () => {
         marcha: marcha,
         arcondicionado: Airconditioning,
         portas: doors,
-        price: price.toString().replace(regex, ","),
+        price: price,
         img: imagecar,
         nota: nota,
         reviews: reviews
