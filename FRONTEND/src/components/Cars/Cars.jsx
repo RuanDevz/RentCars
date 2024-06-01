@@ -1,5 +1,5 @@
 
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Popup from '../Popup/Popup';
 import Carsdetails from './Carsdetails';
 import Context from '../../useContext/Context';
@@ -7,14 +7,16 @@ import axios from 'axios';
 
 const Cars = () => {
 
+
     const {showMessage,cars, setCars} = useContext(Context)
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get('https://rent-cars-jdua.vercel.app/car');
-                setCars(response.data);
-                console.log(response.data)
+                setCars(response.data)
+
+            
             } catch (error) {
                 console.error('Erro ao buscar dados:', error);
             }
@@ -22,6 +24,9 @@ const Cars = () => {
 
         fetchData();
     }, [setCars]);
+
+
+
 
     return (
         <div>

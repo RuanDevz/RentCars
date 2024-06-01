@@ -17,7 +17,9 @@ Router.get('/:id', async (req,res) =>{
 
 
 Router.post('/',async  (req,res) =>{
-    const {img,name,nota,reviews,passageiros,marcha,arcondicionado,portas,price} = req.body
+    
+
+    const {img,name,nota,reviews,passageiros,marcha,arcondicionado,portas,price,username} = req.body
     const createnewcar = await Car.create({
             img: img,
             name: name,
@@ -27,7 +29,8 @@ Router.post('/',async  (req,res) =>{
             marcha: marcha,
             arcondicionado: arcondicionado,
             portas: portas,
-            price: price
+            price: price,
+            username: username
     })
     res.status(200).json({msg: "Carro adicionado com sucesso!", createnewcar})
 })

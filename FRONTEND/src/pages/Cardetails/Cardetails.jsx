@@ -15,7 +15,7 @@ import SearchBarOptions from '../../components/SearchBar/SearchBarOptions';
 const Cardetails = () => {
     const { carId } = useParams();
     
-    const { loading, setLoading,cardetails,setCardetails } = useContext(Context);
+    const { loading, setLoading,cardetails,setCardetails,nameuser } = useContext(Context);
     const navigate = useNavigate();
     const [zoom, setZoom] = useState(0.9);
     const [searchbar, setSearchbar] = useState(false);
@@ -62,7 +62,7 @@ const Cardetails = () => {
                         <h1 className='text-2xl mt-10 lg:text-2xl lg:mt-0 font-primary font-medium text-primary bg-blue-200 p-5 rounded'>{cardetails.name}</h1>
                     </div>
                     <div className='text-center mr-20 lg:flex justify-center items-center lg:text-justify mx-auto ml-20 mt-5'>
-                        <p className='text-5xl text-segundary'>(Reviews: 30123)</p>
+                        <p className='text-5xl text-segundary'>{nameuser}</p>
                     </div>
                     <div className='text-2xl'>
                         <div className='lg:grid grid-cols-2 grid-flow-row mt-10'>
