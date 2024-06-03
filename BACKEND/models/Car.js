@@ -38,12 +38,12 @@ module.exports = (sequelize, DataTypes) => {
         }
     });
 
-    Car.associate = function(models) { // Correção aqui: era Car.associate, agora é Cars.associate
+    Car.associate = function(models) { 
         Car.belongsTo(models.User, {
             foreignKey: 'userId', 
             as: 'user'
         });
     };
 
-    return Car; // Correção aqui: era Car, agora é Car
+    return Car;
 };

@@ -18,7 +18,6 @@ Router.get('/:id', async (req,res) =>{
 
 Router.post('/',async  (req,res) =>{
     
-
     const {img,name,nota,reviews,passageiros,marcha,arcondicionado,portas,price,username} = req.body
     const createnewcar = await Car.create({
             img: img,
@@ -48,6 +47,25 @@ Router.post('/:userId/cars', async (req, res) => {
         });
 
         res.status(201).json({ msg: "Carro adicionado em Meus Carros", car });
+    } catch (error) {
+        console.error('Error creating car:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+Router.post('/:userId/rentcar', async (req, res) => {
+    try {
+        const userId = req.params.userId;
+        const carData = req.body;
+
+        const user = await User.findByPk(userId);
+
+        const car = await Car.create({
+            ...carData,
+            userId: user.id
+        });
+
+        res.status(201).json({ msg: "Carro adicionado em Carro alugados", car });
     } catch (error) {
         console.error('Error creating car:', error);
         res.status(500).json({ error: error.message });

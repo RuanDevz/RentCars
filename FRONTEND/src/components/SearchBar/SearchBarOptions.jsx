@@ -1,10 +1,12 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Location from '../../assets/Search/location.png';
 import calendar from '../../assets/Search/calendar.png';
 import Button from '../Button/Button';
 import './SearchBar.css';
 import { useNavigate } from 'react-router-dom';
 import Context from '../../useContext/Context';
+import Popup from '../Popup/Popup';
+import axios from 'axios';
 
 const SearchBarOptions = () => {
     const navigate = useNavigate();
@@ -15,19 +17,27 @@ const SearchBarOptions = () => {
     const [chooselocation, setChooselocation] = useState(false);
     const [selectedchooselocation, setSelectedchooselocation] = useState('');
 
-    const { setRentcars, cardetails } = useContext(Context);
+    const { setRentcars, cardetails,error, setError,showMessage, setShowMessage,myid } = useContext(Context);
+    const toggleRentcar = async () => {
+        if (pickSelectedDate === '' || returnSelectedDate === '' || selectedchooselocation === '') {
+            setError('Preencha todos os campos!')
+            setShowMessage(true)
+        } else {
+            navigate('/DashboardLooged/Carrosalugados');
+    
+            const newRentCar = {
+                ...cardetails,
+                pickDate: pickSelectedDate,
+                returnDate: returnSelectedDate,
+                location: selectedchooselocation,
+            };
+            setRentcars(prevRentcars => [...prevRentcars, newRentCar]);
 
-    const toggleRentcar = () => {
-        navigate('/DashboardLooged/Carrosalugados');
-
-        const newRentCar = {
-            ...cardetails,
-            pickDate: pickSelectedDate,
-            returnDate: returnSelectedDate,
-            location: selectedchooselocation,
-        };
-
-        setRentcars(prevRentcars => [...prevRentcars, newRentCar]);
+            await axios.post(`https://rent-cars-jdua.vercel.app/cars/${myid}/rentcar`, newRentCar)
+            .then((response) =>{
+                console.log(response.data)
+            })
+        }
     };
 
     const togglePickDate = () => {
@@ -73,16 +83,16 @@ const SearchBarOptions = () => {
 
     const today = getTodayDate();
 
-        const time = new Date()
-        const hours = time.getHours()
-        const minutes = time.getMinutes()
-        const seconds =time.getSeconds()
-
-        const formatedTime = `${hours}h ${minutes}m ${seconds}s`
+    const time = new Date();
+    const hours = time.getHours();
+    const minutes = time.getMinutes();
+    const seconds = time.getSeconds();
+    const formattedTime = `${hours}h ${minutes}m ${seconds}s`;
 
     return (
         <div className='search-bar-container mb-32 mt-32 z-50 whitespace-nowrap'>
             <div className='flex flex-col justify-center gap-36 text-center lg:max-w-7xl lg:flex-row items-center lg:mx-auto rounded top p-5'>
+                {showMessage && <Popup/>}
                 <div className="search-bar-item flex items-center gap-4 relative">
                     <div>
                         <img onClick={toggleLocalization} className='w-10 cursor-pointer' src={Location} alt="location" />
