@@ -35,10 +35,6 @@ module.exports = (sequelize, DataTypes) => {
         price: {
             type: DataTypes.STRING,
             allowNull: false
-        },
-        rented: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: false
         }
     });
 
