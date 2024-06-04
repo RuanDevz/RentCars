@@ -110,7 +110,7 @@ Router.post('/:userId/rent/:carId', async (req, res) => {
         const car = await Car.findOne({
             where: {
                 id: carId,
-                userId: { [Op.ne]: userId },
+                userId: userId,
                 rented: false 
             }
         });
