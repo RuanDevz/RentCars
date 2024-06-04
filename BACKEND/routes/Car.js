@@ -111,14 +111,11 @@ Router.post('/:userId/rent/:carId', async (req, res) => {
             where: {
                 id: carId,
                 userId: userId,
-                rented: false 
             }
         });
         if (!car) {
             return res.status(404).json({ error: 'Carro não encontrado ou não disponível para aluguel' });
         }
-
-        await car.update({ rented: true, rentedBy: userId });
 
         res.status(200).json({ msg: "Carro alugado com sucesso!", car });
     } catch (error) {
