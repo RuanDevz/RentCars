@@ -94,6 +94,35 @@ Router.post('/:userId/rentcar', async (req, res) => {
     }
 });
 
+Router.post('/:userId/rent/:carId', async (req, res) => {
+    try {
+        const { userId, carId } = req.params;
+
+        const user = await User.findByPk(userId);
+        if (!user) {
+            return res.status(404).json({ error: 'Usuário não encontrado' });
+        }
+
+        const car = await Car.findOne({
+            where: {
+                id: carId,
+                userId: { [Op.ne]: userId },
+                rented: false 
+            }
+        });
+        if (!car) {
+            return res.status(404).json({ error: 'Carro não encontrado ou não disponível para aluguel' });
+        }
+
+        await car.update({ rented: true, rentedBy: userId });
+
+        res.status(200).json({ msg: "Carro alugado com sucesso!", car });
+    } catch (error) {
+        console.error('Error renting car:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
 Router.get('/:userId/cars/:carId', async (req,res) =>{
     const {userId, carId} = req.params
 
