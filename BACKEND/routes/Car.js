@@ -1,6 +1,8 @@
 const express = require('express')
 const Router = express.Router()
 const {Car, User} = require('../models')
+const { Op } = require('sequelize');
+
 
 Router.get('/', async (req,res) =>{
     const getcars = req.body
@@ -98,11 +100,13 @@ Router.post('/:userId/rent/:carId', async (req, res) => {
     try {
         const { userId, carId } = req.params;
 
+        // Verifica se o usuário existe
         const user = await User.findByPk(userId);
         if (!user) {
             return res.status(404).json({ error: 'Usuário não encontrado' });
         }
 
+        // Verifica se o carro existe e está disponível para aluguel
         const car = await Car.findOne({
             where: {
                 id: carId,
