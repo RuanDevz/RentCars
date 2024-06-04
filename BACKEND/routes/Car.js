@@ -53,6 +53,28 @@ Router.post('/:userId/cars', async (req, res) => {
     }
 });
 
+
+
+Router.get('/:userId/rentcar', async (req, res) => {
+    try {
+        const userId = req.params.userId;
+        const user = await User.findByPk(userId);
+        if (!user) {
+            return res.status(404).json({ error: 'Usuário não encontrado' });
+        }
+
+        const rentedCars = await Car.findAll({
+            where: { userId: userId }
+        });
+
+        res.status(200).json(rentedCars);
+    } catch (error) {
+        console.error('Error retrieving rented cars:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+
 Router.post('/:userId/rentcar', async (req, res) => {
     try {
         const userId = req.params.userId;

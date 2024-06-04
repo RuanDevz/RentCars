@@ -6,6 +6,14 @@ import Portas from './Images/Portas.png';
 import Button from '../../components/Button/Button';
 
 const CarComponent = ({ car }) => {
+
+
+
+    useEffect(() =>{
+        
+    },[])
+
+
     const [devolutionTime, setDevolutionTime] = useState('');
     const [totalPrice, setTotalPrice] = useState(0);
 
@@ -19,12 +27,12 @@ const CarComponent = ({ car }) => {
         
         const calculateTotalPrice = () => {
             const timeDifference = returndate.getTime() - pickdate.getTime();
-            const days = Math.ceil(timeDifference / (1000 * 3600 * 24)); // Calcula a diferença em dias
+            const days = Math.ceil(timeDifference / (1000 * 3600 * 24));
             const pricePerDay = parseFloat(car.price);
             const total = days * pricePerDay;
             setTotalPrice(total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
 
-            setDevolutionTime(`${days} dias`); // Define o tempo de aluguel como a diferença de dias
+            setDevolutionTime(`${days} dias`);
         };
         
         calculateTotalPrice();
