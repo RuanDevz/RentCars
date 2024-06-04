@@ -38,7 +38,9 @@ const Cars = () => {
                 </section>
                 <section className='flex flex-col justify-center items-center lg:flex lg:justify-between lg:flex-row flex-wrap max-w-6xl mx-auto pb-52'>
                     {cars.map((car, index) => (
-                        <Carsdetails car={car} index={index}/>
+                        <div key={index}>
+                            <Carsdetails car={car} index={index}/>
+                        </div>
                     ))}
                 </section>
                 <div className='flex justify-center items-center border border-gray-300 border-3 max-w-56 mx-auto p-3 rounded-md mb-20'>

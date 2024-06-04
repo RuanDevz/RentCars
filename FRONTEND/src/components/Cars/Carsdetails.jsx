@@ -78,7 +78,6 @@ const Carsdetails = ({ car, index }) => {
                 <div className='flex items-center pb-4'>
                     <img src={Star} alt="Star" />
                     <span>{car.nota}</span>
-                    <p className='text-xs text-gray-500'>{nameuser}</p>
                 </div>
                 <div className='grid grid-cols-2'>
                     <div className='flex py-1 pb-6'>

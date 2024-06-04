@@ -24,8 +24,8 @@ const FormAddCars = () => {
   const [doors, setDoors] = useState('');
   const [price, setPrice] = useState('');
   const [imagecar, setImagecar] = useState('');
-  const [nota, setNota] = useState('6');
-  const [reviews, setReviews] = useState('6');
+  const [nota, setNota] = useState('5')
+  const [reviews, setReviews] = useState('500')
   const regex = /\B(?=(\d{3})+(?!\d))/g;
 
   const { myid, setMsg, setShowMessage, setError } = useContext(Context);
@@ -106,8 +106,8 @@ const FormAddCars = () => {
           <p className='py-5 text-base'>Tem Ar-condicionado?</p>
           <select className='bg-blue-400 p-1 rounded' value={Airconditioning} onChange={(e) => setAirconditioning(e.target.value)}>
             <option disabled value="">Seleciona uma opção</option>
-            <option value="">Sim</option>
-            <option value="Sem Arcondicionado">Não</option>
+            <option value="Com ar">Sim</option>
+            <option value="Sem ar">Não</option>
           </select>
         </div>
         <div>

@@ -72,7 +72,7 @@ const MeusCarros = () => {
                 <div key={car.id} className='max-w-64 font-primary rounded-lg shadow-2xl p-4 mb-4'>
                   <img className='pb-5 w-80' src={car.img} alt={car.name} />
                   <h1 className='font-medium text-lg'>{car.name}</h1>
-                  <div className='grid grid-cols-2 gap-'>
+                  <div className='grid grid-cols-2 gap-3'>
                     <div className='flex py-1'>
                       <img src={Passageiro} alt="Passageiro" />
                       <p className='text-xs text-gray-500'>{car.passageiros} Passageiros</p>

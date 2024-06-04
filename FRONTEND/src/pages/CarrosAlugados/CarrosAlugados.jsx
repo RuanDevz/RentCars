@@ -10,6 +10,12 @@ const CarrosAlugados = ({}) => {
     const { rentcars } = useContext(Context);
     console.log(rentcars);
 
+    const handleDevolution = (index) => {
+        const updatedRentcars = [...rentcars];
+        updatedRentcars.splice(index, 1);
+        setRentcars(updatedRentcars);
+    };
+
     return (
         <div>
             <HeaderLogged />
@@ -18,8 +24,9 @@ const CarrosAlugados = ({}) => {
                 {rentcars.length > 0 ? (
                     rentcars.map((car, index) => (
                         <>
-                        <div className='flex justify-center'>
-                        <CarComponent car={car} index={index}/>
+                        <div className=''>
+                        <CarComponent key={index} car={car} onDevolution={() => handleDevolution(index)} />
+
                         </div>
                         </>
                     ))

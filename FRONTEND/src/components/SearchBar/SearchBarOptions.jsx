@@ -16,9 +16,20 @@ const SearchBarOptions = () => {
     const [returnSelectedDate, setReturnSelectedDate] = useState('');
     const [chooselocation, setChooselocation] = useState(false);
     const [selectedchooselocation, setSelectedchooselocation] = useState('');
+    
 
-    const { setRentcars, cardetails,error, setError,showMessage, setShowMessage,myid } = useContext(Context);
+    const { setRentcars,rentcars, cardetails,error, setError,showMessage, setShowMessage,myid } = useContext(Context);
     const toggleRentcar = async () => {
+        
+        console.log(rentcars)
+
+
+        if(rentcars > 1){
+            setShowMessage(true)
+            setError("Você só pode alugar um carro")
+            return
+        }
+
         if (pickSelectedDate === '' || returnSelectedDate === '' || selectedchooselocation === '') {
             setError('Preencha todos os campos!')
             setShowMessage(true)
