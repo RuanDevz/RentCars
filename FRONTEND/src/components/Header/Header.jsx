@@ -42,8 +42,9 @@ const Header = () => {
                 <span>Why Choose us</span>
               </li>
               <li className='flex justify-center flex-col gap-7 lg:hidden'>
-          <Link to='/login'><Button Children='Sign in'/></Link>
-          <Link to='/register'><Button Children='Sign up'/></Link>
+          <Link to='/login'><Button>Sign in</Button></Link>
+          <Link to='/register'><Button>Sign up</Button></Link>
+          
               </li>
             </ul>
           </nav>

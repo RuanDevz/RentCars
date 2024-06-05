@@ -104,7 +104,7 @@ const RegisterForm = () => {
               id='confirmpassword'
             />
           </div>
-          <Button Children='Register' onClick={handleRegister} />
+          <Button onClick={handleRegister} >Register</Button>
           <Link to='/login' className='text-primary underline'>
             Have an account?
           </Link>

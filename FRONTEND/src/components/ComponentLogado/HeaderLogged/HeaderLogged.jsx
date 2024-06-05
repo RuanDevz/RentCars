@@ -55,7 +55,7 @@ const HeaderLogged = () => {
             <img className='py-2 px-10' src={logo} alt="logo" />
             </div>
               <li className='flex justify-end items-center flex-row-reverse gap-7 ml-3 relative left-0 lg:hidden'>
-              <p className='hover:text-primary cursor-pointer font-medium'>Ruanb</p>
+              <p className='hover:text-primary cursor-pointer font-medium'>{userdata}</p>
                <FaRegUserCircle className='text-4xl text-primary cursor-pointer'/>
               </li>
               <Link to='/DashboardLooged/Adicionarcarros'>
