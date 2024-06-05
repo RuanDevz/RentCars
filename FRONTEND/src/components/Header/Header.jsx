@@ -58,7 +58,7 @@ const Header = () => {
         </div>
         <div className='hidden lg:flex gap-5 font-primary text-base'>
           <Link to='/login'><button className='lg:block mt-2'>Sign in</button></Link>
-          <Link to='/register'><Button Children='Sign up'/></Link>
+          <Link to='/register'><Button>Sign up</Button></Link>
         </div>
       </header>
     </div>

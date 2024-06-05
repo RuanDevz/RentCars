@@ -9,7 +9,8 @@ export default {
       margin:{
         'custom': '25rem',
         'm-top-custom': '900px',
-        'error': '450px'
+        'error': '450px',
+        'bottom': '800px'
       },
       width:{
         "car-width": '800px'

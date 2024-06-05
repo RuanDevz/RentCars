@@ -36,10 +36,10 @@ const Cars = () => {
                     <p className='text-primary font-medium py-3 px-10 bg-blue-100 rounded mb-10 w-64 text-center whitespace-nowrap'>POPULAR RENTAL DEALS</p>
                     <h1 className='text-center lg:font-primary font-medium text-4xl max-w-xl pb-20'>Most popular cars rental deals</h1>
                 </section>
-                <section className='flex flex-col justify-center items-center lg:flex lg:justify-between lg:flex-row flex-wrap max-w-6xl mx-auto pb-52'>
+                <section className='flex max-w-full flex-col flex-wrap justify-around items-center lg:flex lg:justify-between lg:flex-row lg:flex-wrap lg:max-w-6xl mx-auto pb-52'>
                     {cars.map((car, index) => (
                         <div key={index}>
-                            <Carsdetails car={car} index={index}/>
+                        <Carsdetails car={car} index={index}/>
                         </div>
                     ))}
                 </section>

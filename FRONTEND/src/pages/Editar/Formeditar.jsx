@@ -137,7 +137,7 @@ const Formeditar = () => {
           <Input value={imagecar} onChange={(e) => setImagecar(e.target.value)} placeholder='URL da imagem' />
         </div>
         <div className='flex justify-center items-center mt-10 mb-7'>
-          <Button onClick={handleSubmit} Children='Salvar' type="submit"></Button>
+          <Button onClick={handleSubmit} type="submit">Salvar</Button>
         </div>
       </form>
     </div>

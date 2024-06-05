@@ -102,7 +102,7 @@ const CarComponent = ({ car }) => {
                 <p><strong>{devolutionTime}</strong></p>
             </div>
             <div className='mt-10 flex justify-center items-center'>
-                <Button onClick={Devolution} Children='CONFIRMAR DEVOLUÇÃO'/>
+                <Button onClick={Devolution} >CONFIRMAR DEVOLUÇÃO</Button>
             </div>
         </div>
        </div>

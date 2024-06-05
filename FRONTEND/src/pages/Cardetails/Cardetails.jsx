@@ -93,8 +93,8 @@ const Cardetails = () => {
                             <div className='fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50'>
                                 <div className='bg-white p-10 rounded-lg shadow-lg flex items-center justify-center'>
                                     <SearchBarOptions />
-                                    <div className=''>
-                                    <button onClick={toggleSearchBar} className=' mt-4 mb-96 text-white bg-red-500 px-4 py-2 rounded hover:bg-red-600'>
+                                    <div className='relative flex justify-center items-center'>
+                                    <button onClick={toggleSearchBar} className='hidden relative mb-bottom right-20 lg:mt-4 llg:block lg:relative lg:top-0 lg:mb-96 text-white bg-red-500 px-4 py-2 rounded hover:bg-red-600'>
                                         Close
                                     </button>
                                     </div>

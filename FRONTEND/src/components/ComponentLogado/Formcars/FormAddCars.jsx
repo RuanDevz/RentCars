@@ -128,7 +128,7 @@ const FormAddCars = () => {
           <Input value={imagecar} onChange={(e) => setImagecar(e.target.value)} placeholder='URL da imagem' />
         </div>
         <div className='flex justify-center items-center mt-10 mb-7'>
-          <Button type="submit" Children='SALVAR' />
+          <Button type="submit" >SALVAR</Button>
         </div>
       </form>
     </div>

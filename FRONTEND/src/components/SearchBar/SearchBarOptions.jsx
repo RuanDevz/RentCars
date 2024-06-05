@@ -158,7 +158,7 @@ const SearchBarOptions = () => {
                         <p className='text-gray-500'>{returnSelectedDate || 'Data de retorno'}</p>
                     </div>
                 </div>
-                <Button onClick={toggleRentcar} Children='Search' />
+                <Button  onClick={toggleRentcar}>Procurar</Button>
             </div>
         </div>
     );

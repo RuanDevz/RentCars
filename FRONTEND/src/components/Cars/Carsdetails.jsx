@@ -27,7 +27,7 @@ const Carsdetails = ({ car, index }) => {
             return;
         }
 
-        setLoading(true);
+        setLoading(true)
 
         try {
             const config = {
@@ -51,7 +51,7 @@ const Carsdetails = ({ car, index }) => {
             setError("Ocorreu um erro ao tentar alugar o carro.");
             setShowMessage(true);
         } finally {
-            setLoading(false);
+            setLoading(false); 
         }
     };
 
@@ -102,7 +102,9 @@ const Carsdetails = ({ car, index }) => {
                     <p><strong>R${car.price}</strong> <span className='text-gray-500'>/day</span></p>
                 </div>
                 <div className='flex justify-center items-center mt-6'>
-                    <Button onClick={() => rentCar(car.id)} Children={loading ? 'Carregando...' : 'Rent Now'} disabled={loading} />
+                    <Button onClick={() => rentCar(car.id)} disabled={loading} >
+                        {loading ? 'Carregando...' : 'Rent Now'}
+                    </Button>
                 </div>
             </div>
         </div>
