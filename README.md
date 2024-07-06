@@ -1,4 +1,4 @@
-# RentCars Landing Page
+# RentCars
 
 ## Descrição
 
